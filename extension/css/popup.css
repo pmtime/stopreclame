@@ -1,0 +1,60 @@
+BODY {
+    width: 300px;
+    height: 200px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAvklEQVRYhcXWuw2DQBgDYJMFqFiA/VcKAyQNTHBpkBDo4O5/2HFvfXLn4f1Z4c08je7u6y/q8t2ccFCFb3Fc9cApqhnOUm1womqAc9VeOF3tghlqGyapDZinPsFU9RZmq3VYoFZgjXqFZeoJVqoHLFZ3WK8CGEopehWRzxVR52l0wkEVvsVx1QOnqGY4S7XBiaoBzlV74XS1C2aobZikNmCe+gRT1VuYrdZhgVqBNeoVlqknWKkesFjdYb0K4AcNknsDIx/W8gAAAABJRU5ErkJggg==");
+    background-repeat: repeat;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    font-family: Geneva, Verdana, Arial, sans-serif;
+    font-weight: 700;
+    color: rgb(74, 125, 172);
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+A {
+    color: rgb(74, 125, 172) !important;
+    outline: none;
+}
+
+.dv-counter {
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    position: fixed;
+    top: -20px;
+    left: -20px;
+}
+
+#dv_frame_data {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 5px;
+}
+
+#dv_stat {
+    width: 100%;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16pt;
+    text-align: center;
+    position: fixed;
+    bottom: 50%;
+    opacity: 0.7;
+}
+
+#dv_stat:hover {
+    opacity: 1;
+}
+
+#dv_autor {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 5px;
+    font-size: 8pt;
+}
