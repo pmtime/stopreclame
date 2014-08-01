@@ -105,8 +105,6 @@ var BLOCKLIST = (function () {
                 this.str = config.str;
             }
 
-            this.initRegExp();
-
             return true;
         },
 
@@ -114,7 +112,7 @@ var BLOCKLIST = (function () {
             var config = {
                 re_str : this.re_str,
                 str    : this.str
-            }
+            };
 
             this.save("config", config);
         },
@@ -137,6 +135,7 @@ var BLOCKLIST = (function () {
 
         run: function () {
             this.loadConfig();
+            this.initRegExp();
         }
     };
     

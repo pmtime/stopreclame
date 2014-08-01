@@ -15,8 +15,8 @@ var LIBRARY = {
         return true;
     },
 
-    msgBackground: function(data) {
-        chrome.runtime.sendMessage(data);
+    msgBackground: function(data, responseCallback) {
+        chrome.runtime.sendMessage(data, responseCallback);
     },
 
     onMessage: function(callback) {

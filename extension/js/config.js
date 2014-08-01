@@ -1,15 +1,19 @@
 var CONFIG = (function () {
 	var _ = LIBRARY,
-		module;
+		module,
+		domain = "http://skychko.com/stopreclame/api";
 
 	module = {
 	    saving_params: [
 	        "url_blocklist",
 	        "ext_id",
+	        "ext_status"	// 1 - enable, 0 - disable
 	    ],
 
-	    url_upd_blocklist : "http://127.0.0.1:3000/system/blocklist.php",
+	    ext_status        : "1",
+	    url_upd_blocklist : domain + "/blocklist.php",
 	    url_period_def    : 24 * 60 * 60 * 1000,
+	    url_report        : domain + "/report.php",
 	    ext_id            : "0",
 	    hash              : "config_",
 

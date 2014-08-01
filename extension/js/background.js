@@ -19,6 +19,16 @@
             return _.save(this.hash + key, data);
         },
 
+        offExt: function () {
+            config.ext_status = "0";
+            config.saveConfig();
+        },
+
+        onExt: function () {
+            config.ext_status = "1";
+            config.saveConfig();
+        },
+
         executeScript: function (tabId, file) {
             try {
                 chrome.tabs.executeScript(tabId, {
@@ -34,6 +44,10 @@
 
         onBeforeRequest: function (details) {
             var res;
+
+            if (config.ext_status === "0") {
+                return false;
+            }
 
             if (details.tabId < 1) {
                 return false;
@@ -62,6 +76,10 @@
         updateInfo: function (tabId) {
             var ad,
                 all;
+
+            if (config.ext_status === "0") {
+                return;
+            }
 
             if (typeof this.tabs[tabId] === "undefined") {
                 this.tabs[tabId] = 0;
@@ -96,7 +114,9 @@
                 opt_extraInfoSpec = ["blocking"];
 
             chrome.webRequest.onBeforeRequest.addListener(function (details) {
-                    return {cancel: _this.onBeforeRequest(details)};
+                    var cancel = _this.onBeforeRequest(details);
+
+                    return {cancel: cancel};
                 }, filter, opt_extraInfoSpec);
         },
 
@@ -112,12 +132,59 @@
             });
         },
 
+        getDataForPopup: function (tabId) {
+            var data = {},
+                total;
+
+            total = window.localStorage['all'];
+
+            if (!total) {
+                total = 0;
+            }
+
+            data.total      = total;
+            data.page       = this.tabs[tabId] || 0;
+            data.ext_status = config.ext_status;
+
+            return data;
+        },
+
+        reportAdPage: function (url) {
+            _.ajax({
+                url     : config.url_report,
+                type    : "POST",
+                success : function (response) {
+                },
+                data    : "id=" + encodeURIComponent(config.ext_id) + "&url=" + encodeURIComponent(url)
+            });
+        },
+
         onMessage: function () {
             var _this = this;
 
             LIBRARY.onMessage(function(mes, sender, sendResponse) {
-                if (mes.action === "incStat") {
-                    _this.updateInfo(sender.tab.id);
+                switch(mes.action) {
+                    case "incStat":
+                        _this.updateInfo(sender.tab.id);
+                        break;
+
+                    case "getPopupData":
+                        sendResponse(_this.getDataForPopup(mes.tabId));
+                        break;
+
+                    case "changeExtStatus":
+                        if (mes.enable) {
+                            _this.onExt();
+                        } else {
+                            _this.offExt();
+                        }
+
+                        break;
+
+                    case "adReport": 
+                        _this.reportAdPage(mes.url);
+
+                        break;
                 }
             })
         },
