@@ -74,6 +74,11 @@ BUTTON:hover {
     position: relative;
 }
 
+.disabled {
+    cursor: default;
+    background-color: #777777 !important;
+}
+
 #dv_frame_data {
     width: 100%;
     text-align: center;

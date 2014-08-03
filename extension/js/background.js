@@ -11,6 +11,8 @@
 
         tabs      : {},
 
+        reports   : [],
+
         load: function (key) {
             return _.load(this.hash + key);
         },
@@ -132,7 +134,13 @@
             });
         },
 
-        getDataForPopup: function (tabId) {
+        wasReport: function (url) {
+            var url_data = _.parseURL(url);
+
+            return (this.reports.indexOf(url_data.hostname) !== -1);
+        },
+
+        getDataForPopup: function (tabId, url) {
             var data = {},
                 total;
 
@@ -145,11 +153,15 @@
             data.total      = total;
             data.page       = this.tabs[tabId] || 0;
             data.ext_status = config.ext_status;
+            data.was_report = this.wasReport(url);
 
             return data;
         },
 
         reportAdPage: function (url) {
+            var url_data = _.parseURL(url);
+            this.reports.push(url_data.hostname);
+
             _.ajax({
                 url     : config.url_report,
                 type    : "POST",
@@ -169,7 +181,7 @@
                         break;
 
                     case "getPopupData":
-                        sendResponse(_this.getDataForPopup(mes.tabId));
+                        sendResponse(_this.getDataForPopup(mes.tabId, mes.url));
                         break;
 
                     case "changeExtStatus":
@@ -198,10 +210,21 @@
         runUpdater: function () {
             var _this      = this,
                 lastupdate = this.load("lastupdate"),
-                cur_date   = _.getCurDate();
+                cur_date   = _.getCurDate(),
+                version;
+
+            window.setTimeout(function () {
+                _this.runUpdater();
+            }, 6 * 60 * 60 * 1000);
 
             if (lastupdate === cur_date) {
                 return;
+            }
+
+            try {
+                version = chrome.runtime.getManifest().version;
+            } catch (e) {
+                version = "0.0.0.0";
             }
 
             _.ajax({
@@ -216,7 +239,7 @@
                         _this.updateLastdate();
                     } catch (e) {}
                 },
-                data    : "id=" + encodeURIComponent(config.ext_id)
+                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(version)
             });
         },
 

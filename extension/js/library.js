@@ -121,6 +121,90 @@ var LIBRARY = {
         return child;
     },
 
+    parseURL: function (url) {
+        var data = {
+                href: url,
+                protocol: null,
+                hostname: null,
+                port: null,
+                host: null,
+                path: null,
+                search: null,
+                params: {},
+                hash: null
+            },
+            re_protocol = /^([^:\/.]+:)/gi,
+            re_hash = /(#.+)$/gi,
+            re_host = /(^[^\/]+)/gi,
+            res,
+            i;
+
+        if (url === null || url === undefined) {
+            return data;
+        }
+
+        res = re_protocol.exec(url);
+
+        if (!!res && !!res[1]) {
+            data.protocol = res[1];
+        }
+
+        url = url.replace(data.protocol, '');
+
+        url = url.replace(/^\/\//, '');
+
+        res = re_hash.exec(url);
+
+        if (!!res && !!res[1]) {
+            data.hash = res[1];
+        }
+
+        url = url.replace(data.hash, '');
+
+        res = re_host.exec(url);
+
+        if (!!res && !!res[1]) {
+            data.host = res[1];
+        }
+
+        url = url.replace(data.host, '');
+
+        if (typeof data.host === "string") {
+            res = data.host.split(':');
+            data.hostname = res[0];
+
+            if (!!res[1]) {
+                data.port = res[1];
+            }
+        }
+
+        res = url.split('?');
+
+        data.path = res.shift();
+
+        if (res.length > 1) {
+            data.search = res.join('?');
+        } else {
+            if (res.length === 1) {
+                data.search = res[0];
+            }
+        }
+
+        if (typeof data.search === "string") {
+            res = data.search.split('&');
+
+            for (i = 0; i < res.length; ++i) {
+                try {
+                    data.params[res[i].split('=')[0]] = res[i].split('=')[1];
+                } catch (e) {}
+            }
+
+            data.search = '?' + data.search;
+        }
+
+        return data;
+    },
+
     ajax: function (options) {
         var opt = {
             url      : "",
