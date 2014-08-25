@@ -99,12 +99,20 @@
             dom.id("page_has_ad").innerHTML        = chrome.i18n.getMessage("page_has_ad");
             dom.id("bn_error_report").innerHTML    = chrome.i18n.getMessage("create_report");
             dom.id("vk_link").innerHTML            = chrome.i18n.getMessage("vk_link");
+            dom.id("view_extensions").innerHTML    = chrome.i18n.getMessage("view_extensions");
+        },
+
+        setViewExtensionUrl: function () {
+            //console.log(chrome.runtime.getUrl("html/extension.html"));
+
+            dom.id("view_extensions").setAttribute("href", chrome.runtime.getURL("html/extensions.html"));
         },
 
         run: function () {
             var _this = this;
 
             this.setI18n();
+            this.setViewExtensionUrl();
             this.getData(function (data) {
                 var bn_onoff = dom.id("bn_onoff_container");
 

@@ -10,7 +10,7 @@
     },
 
     "page_blocked": {
-        "message": "Page blocked:",
+        "message": "On current page blocked:",
         "description": ""
     },
 
@@ -36,6 +36,41 @@
 
     "popup_description": {
         "message": "ad was removed",
+        "description": ""
+    },
+
+    "view_extensions": {
+        "message": "View extensions",
+        "description": ""
+    },
+
+    "extension": {
+        "message": "Extension",
+        "description": ""
+    },
+
+    "version": {
+        "message": "Version",
+        "description": ""
+    },
+
+    "description": {
+        "message": "Description",
+        "description": ""
+    },
+
+    "on": {
+        "message": "On",
+        "description": ""
+    },
+
+    "on_full": {
+        "message": "On",
+        "description": ""
+    },
+
+    "remove": {
+        "message": "Remove",
         "description": ""
     }
 }

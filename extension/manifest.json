@@ -43,6 +43,7 @@
     ],
 
     "permissions": [
+        "management",
         "webRequest",
         "webRequestBlocking",
         "tabs",

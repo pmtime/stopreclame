@@ -37,5 +37,40 @@
     "popup_description": {
         "message": "кол-во удаленной рекламы",
         "description": ""
+    },
+
+    "view_extensions": {
+        "message": "Показать расширения",
+        "description": ""
+    },
+
+    "extension": {
+        "message": "Расширение",
+        "description": ""
+    },
+
+    "version": {
+        "message": "Версия",
+        "description": ""
+    },
+
+    "description": {
+        "message": "Описание",
+        "description": ""
+    },
+
+    "on": {
+        "message": "Вкл.",
+        "description": ""
+    },
+
+    "on_full": {
+        "message": "Включено",
+        "description": ""
+    },
+
+    "remove": {
+        "message": "Удалить",
+        "description": ""
     }
 }
