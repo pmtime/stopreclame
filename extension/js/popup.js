@@ -79,11 +79,11 @@
                 el_report = dom.id("bn_error_report");
 
             if (_this.was_report) {
-                el_report.innerHTML = "Сообщение отправлено";
+                el_report.innerHTML = chrome.i18n.getMessage("was_report");
                 el_report.className = "disabled";
                 el_report.setAttribute("disabled", "disabled");
             } else {
-                el_report.innerHTML = "Сообщить";
+                el_report.innerHTML = chrome.i18n.getMessage("create_report");
 
                 if (_this.ext_status === "0") {
                     el_report.setAttribute("disabled", "disabled");
@@ -93,9 +93,18 @@
             }
         },
 
+        setI18n: function () {
+            dom.id("total_blocked_info").innerHTML = chrome.i18n.getMessage("total_blocked");
+            dom.id("page_blocked_info").innerHTML  = chrome.i18n.getMessage("page_blocked");
+            dom.id("page_has_ad").innerHTML        = chrome.i18n.getMessage("page_has_ad");
+            dom.id("bn_error_report").innerHTML    = chrome.i18n.getMessage("create_report");
+            dom.id("vk_link").innerHTML            = chrome.i18n.getMessage("vk_link");
+        },
+
         run: function () {
             var _this = this;
 
+            this.setI18n();
             this.getData(function (data) {
                 var bn_onoff = dom.id("bn_onoff_container");
 

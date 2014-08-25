@@ -1,0 +1,41 @@
+{
+    "ext_name": {
+        "message": "Stop Reclame",
+        "description": "desc"
+    },
+
+    "total_blocked": {
+        "message": "Всего заблакировано:",
+        "description": ""
+    },
+
+    "page_blocked": {
+        "message": "Заблакировано на данной странице:",
+        "description": ""
+    },
+
+    "page_has_ad": {
+        "message": "Есть реклама на сайте?",
+        "description": ""
+    },
+
+    "was_report": {
+        "message": "Сообщение отправлено",
+        "description": ""
+    },
+
+    "create_report": {
+        "message": "Сообщить",
+        "description": ""
+    },
+
+    "vk_link": {
+        "message": "группа вконтакте",
+        "description": ""
+    },
+
+    "popup_description": {
+        "message": "кол-во удаленной рекламы",
+        "description": ""
+    }
+}

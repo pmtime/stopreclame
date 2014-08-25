@@ -1,9 +1,10 @@
 {
     "name": "Stop Reclame",
-    "version": "2.1.0.0",
+    "version": "2.2.0.0",
     "manifest_version": 2,
 
     "description": "Stop Reclame",
+    "default_locale": "en",
 
     "background": {
    		"page": "html/background.html"
@@ -20,7 +21,7 @@
             "19": "images/icon-19.png",
             "38": "images/icon-38.png"
         },
-        "default_title": "ad was removed",
+        "default_title": "__MSG_popup_description__",
         "default_popup": "html/popup.html"
     },
 

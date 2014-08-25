@@ -33,7 +33,8 @@ var BLOCKLIST = (function () {
             "\\.24smi\\.net",
             "partner\\.join\\.com\\.ua",
             "ladyads\\.ru",
-            "lookfornews\\.net"
+            "lookfornews\\.net",
+            "web\\.fxhoog\\.com"
         ],
         def_str = [];
 

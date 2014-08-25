@@ -1,0 +1,41 @@
+{
+    "ext_name": {
+        "message": "Stop Reclame",
+        "description": "desc"
+    },
+
+    "total_blocked": {
+        "message": "Total blocked:",
+        "description": ""
+    },
+
+    "page_blocked": {
+        "message": "Page blocked:",
+        "description": ""
+    },
+
+    "page_has_ad": {
+        "message": "Does the page have an ad?",
+        "description": ""
+    },
+
+    "was_report": {
+        "message": "Report sended",
+        "description": ""
+    },
+
+    "create_report": {
+        "message": "Report",
+        "description": ""
+    },
+
+    "vk_link": {
+        "message": "vk.com group",
+        "description": ""
+    },
+
+    "popup_description": {
+        "message": "ad was removed",
+        "description": ""
+    }
+}
