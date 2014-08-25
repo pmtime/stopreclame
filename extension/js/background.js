@@ -1,5 +1,3 @@
-//__MSG_adblock_click_for_details__
-
 (function () {
     var _         = LIBRARY,
         config    = CONFIG,

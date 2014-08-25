@@ -1,50 +1,12 @@
 var BLOCKLIST = (function () {
     var _ = LIBRARY,
-        module,
-        def_re = [
-            "\\.teaser-goods\\.ru",
-            "\\.anews\\.cc",
-            "post\\.rmbn\\.net",
-            "\\.ssl-services\\.com",
-            "geede\\.info",
-            "recreativ\\.ru",
-            "tizerda\\.net",
-            "\\.luxadv\\.com",
-            "\\.marketgid\\.com",
-            "\\.luxup\\.ru",
-            "\\.myads\\.ru",
-            "banerator\\.net",
-            "am15\\.net",
-            "ad\\.adriver\\.ru",
-            "\\.adfox\\.ru",
-            "\\.drivenetwork\\.ru",
-            "ads\\.betweendigital\\.com",
-            "\\.directadvert\\.ru",
-            "\\.smi2\\.ru",
-            "\\.mixmarket\\.biz",
-            "oxn\\.gerkon\\.eu",
-            "ad\\.admixer\\.net",
-            "\\.clickganic\\.com",
-            "vidaugust\\.ru",
-            "vogorita\\.com",
-            "\\.adframesrc\\.com",
-            "\\.admixer\\.net",
-            "\\.redtram\\.com",
-            "\\.24smi\\.net",
-            "partner\\.join\\.com\\.ua",
-            "ladyads\\.ru",
-            "lookfornews\\.net",
-            "web\\.fxhoog\\.com"
-        ],
-        def_str = [];
+        module;
 
     module = {
         hash   : "blocklist_",
-
-        re_str : def_re.slice(),
-
+        re_str : [],
         re     : [],
-        str    : def_str.slice(),
+        str    : [],
 
         load: function (key) {
             return _.load(this.hash + key);

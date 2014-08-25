@@ -4,6 +4,7 @@ BODY {
     margin: 0px;
     padding: 10px;
     font-family: Verdana, Geneva, Arial, sans-serif;
+    font-size: 12pt;
     color: rgb(74, 125, 172);
 
     -moz-user-select: none;
@@ -28,7 +29,7 @@ BUTTON {
 }
 
 BUTTON:hover {
-    background-color: rgb(78, 122, 164)
+    background-color: rgb(78, 122, 164);
 }
 
 TABLE {
@@ -40,16 +41,18 @@ TR:hover TD {
 }
 
 TD {
-    height: 1cm;
+    min-height: 1cm;
+    border-bottom: 1px solid rgb(78, 122, 164);
 }
 
 TD {
-    padding: 0px 10px 0px 10px;
+    padding: 5px 10px 5px 10px;
 }
 
 TH {
     background-color: rgba(78, 122, 164, 0.3);
     height: 1cm;
+    border-bottom: 2px solid rgb(78, 122, 164);
 }
 
 .on-false {
@@ -111,56 +114,4 @@ TH {
     position: fixed;
     bottom: 5px;
     font-size: 8pt;
-}
-
-.onoffswitch {
-    position: relative;
-    width: 82px;
-    left: 50%;
-    margin-left: -41px;
-
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-}
-.onoffswitch-checkbox {
-    display: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 15px;
-}
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
-    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
-}
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 24px; padding: 0; line-height: 24px;
-    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
-.onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    background-color: rgb(98, 142, 184);
-    color: #ffffff;
-}
-.onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
-    text-align: right;
-}
-.onoffswitch-switch {
-    display: block; width: 18px; margin: 3px;
-    background: #FFFFFF;
-    border: 2px solid #999999; border-radius: 15px;
-    position: absolute; top: 0; bottom: 0; right: 54px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
 }
