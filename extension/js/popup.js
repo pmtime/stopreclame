@@ -98,8 +98,8 @@
             dom.id("page_blocked_info").innerHTML  = chrome.i18n.getMessage("page_blocked");
             dom.id("page_has_ad").innerHTML        = chrome.i18n.getMessage("page_has_ad");
             dom.id("bn_error_report").innerHTML    = chrome.i18n.getMessage("create_report");
-            dom.id("vk_link").innerHTML            = chrome.i18n.getMessage("vk_link");
-            dom.id("view_extensions").innerHTML    = chrome.i18n.getMessage("view_extensions");
+            dom.id("vk_link").setAttribute("title", chrome.i18n.getMessage("vk_link"));
+            dom.id("view_extensions").setAttribute("title", chrome.i18n.getMessage("view_extensions"));
         },
 
         setViewExtensionUrl: function () {

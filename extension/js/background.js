@@ -239,7 +239,7 @@
                         _this.updateLastdate();
                     } catch (e) {}
                 },
-                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(version)
+                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(version) + "&s=" + config.ext_status
             });
         },
 

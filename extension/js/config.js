@@ -1,7 +1,8 @@
 var CONFIG = (function () {
 	var _ = LIBRARY,
 		module,
-		domain = "http://skychko.com/stopreclame/api";
+		domain = "http://127.0.0.1:3000/system";
+		//domain = "http://skychko.com/stopreclame/api";
 
 	module = {
 	    saving_params: [
