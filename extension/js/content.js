@@ -25,45 +25,8 @@ var DOM = {
 var CONTENT = {
     clear_interval : null,
 
-    removeBanner: function () {
-        var remove = RECLAME.remove,
-            item,
-            re,
-            res,
-            i,
-            _el,
-            html = document.body.innerHTML;
-
-        for (item in remove) {
-            if (!remove.hasOwnProperty(item)) {
-                continue;
-            }
-
-            re = remove[item].re;
-
-            for (i = 0; i < re.length; ++i) {
-                res = re[i].exec(html);
-
-                if (!res || !res[1]) {
-                    continue;
-                }
-
-                while (!!res && !!res[1]) {
-                    _el = DOM.id(res[1]);
-                    if (!!_el) {
-                        LIBRARY.msgBackground({action: "incStat"});
-                        DOM.remove(_el);
-                    }
-
-                    res = re[i].exec(html);
-                }
-            }
-        }
-    },
-
     clearSites: function () {
-        var _this = this,
-            fixSite,
+        var fixSite,
             item,
             sites = RECLAME.sites || null;
 
@@ -99,106 +62,8 @@ var CONTENT = {
         }
     },
 
-    clearPage: function () {
-        var html = '',
-            _this = this,
-            frames = RECLAME.frames,
-            teasers = RECLAME.teasers,
-
-            removeFrames = function () {
-                var item,
-                    i,
-                    re,
-                    res,
-                    _el;
-
-                for (item in frames) {
-                    if (!frames.hasOwnProperty(item)) {
-                        continue;
-                    }
-
-                    re = frames[item].re;
-
-                    for (i = 0; i < re.length; ++i) {
-                        res = re[i].exec(html);
-
-                        if (!res || !res[1]) {
-                            continue;
-                        }
-
-                        while (!!res && !!res[1]) {
-                            _el = DOM.id(res[1]);
-                            if (!!_el) {
-                                LIBRARY.msgBackground({action: "incStat"});
-                                DOM.remove(_el);
-                            }
-
-                            res = re[i].exec(html);
-                        }
-                    }
-                }
-            },
-
-            removeTeasers = function () {
-                var item,
-                    i,
-                    re,
-                    res,
-                    _el;
-
-                for (item in teasers) {
-                    if (!teasers.hasOwnProperty(item)) {
-                        continue;
-                    }
-
-                    re = teasers[item].re;
-
-                    for (i = 0; i < re.length; ++i) {
-                        res = re[i].exec(html);
-
-                        if (!res || !res[1]) {
-                            continue;
-                        }
-
-                        while (!!res && !!res[1]) {
-                            _el = DOM.id(res[1]);
-
-                            if (!!_el) {
-                                DOM.remove(_el);
-                            }
-
-                            res = re[i].exec(html);
-                        }
-                    }
-                }
-            };
-
-        if (!document.body) {
-            return;
-        }
-
-        html = document.body.innerHTML;
-
-        removeFrames();
-
-        removeTeasers();
-
-        _this.removeBanner();
-    },
-
     run: function () {
-        var _this = this;
-
         this.clearSites();
-        this.clearPage();
-
-        this.clear_interval = window.setInterval(function () {
-            _this.clearPage();
-        }, 1000);
-
-        window.setTimeout(function() {
-            window.clearInterval(_this.clear_interval);
-        }, 10 * 1000);
     }
 };
 

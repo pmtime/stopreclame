@@ -18,6 +18,11 @@ A {
 	text-decoration: none;
 }
 
+A:focus {
+    outline: 0;
+}
+
+
 BUTTON {
     cursor: pointer;
     background-color: rgb(98, 142, 184);
