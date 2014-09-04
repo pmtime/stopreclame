@@ -5,12 +5,12 @@
     },
 
     "total_blocked": {
-        "message": "Всего заблакировано:",
+        "message": "Всего заблокировано:",
         "description": ""
     },
 
     "page_blocked": {
-        "message": "Заблакировано на данной странице:",
+        "message": "Заблокировано на данной странице:",
         "description": ""
     },
 
