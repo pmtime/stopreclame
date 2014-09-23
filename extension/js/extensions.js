@@ -1,4 +1,5 @@
 var EXTS = {
+    ext_name: chrome.runtime.getManifest().name,
     list: [],
 
     view: function () {
@@ -31,13 +32,12 @@ var EXTS = {
                 '</tr>' +
             '</thead><tbody>';
 
-
         for (i = 0; i < this.list.length; ++i) {
             if (this.list[i].type !== "extension") {
                 continue;
             }
 
-            if (chrome.runtime.getManifest().name === this.list[i].name) {
+            if (this.ext_name === this.list[i].name) {
                 continue;
             }
 

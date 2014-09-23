@@ -103,8 +103,6 @@
         },
 
         setViewExtensionUrl: function () {
-            //console.log(chrome.runtime.getUrl("html/extension.html"));
-
             dom.id("view_extensions").setAttribute("href", chrome.runtime.getURL("html/extensions.html"));
         },
 

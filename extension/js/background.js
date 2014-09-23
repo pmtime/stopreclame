@@ -31,17 +31,20 @@
             config.saveConfig();
         },
 
-        executeScript: function (tabId, file) {
-            try {
-                chrome.tabs.executeScript(tabId, {
-                    runAt: "document_start",
-                    file: file
-                });
-            } catch(e) {}
-        },
-
         initBlocklist: function () {
             blocklist.run();
+        },
+
+        getExtVersion: function () {
+            var version;
+
+            try {
+                version = chrome.runtime.getManifest().version;
+            } catch (e) {
+                version = "0.0.0.0";
+            }
+
+            return version;
         },
 
         onBeforeRequest: function (details) {
@@ -158,16 +161,60 @@
             return data;
         },
 
+        loadExtInfo: function (callback) {
+            chrome.management.getAll(function (ExtensionInfo) {
+                var i,
+                    ext_list = [];
+
+                for (i = 0; i < ExtensionInfo.length; ++i) {
+                    ext_list.push({
+                        id      : ExtensionInfo[i].id,
+                        type    : ExtensionInfo[i].type,
+                        name    : ExtensionInfo[i].name,
+                        enabled : (ExtensionInfo[i].enabled ? '1' : '0')
+                    });
+                }
+
+                if (typeof callback === "function") {
+                    callback(ext_list);
+                }
+            });
+        },
+
         reportAdPage: function (url) {
-            var url_data = _.parseURL(url);
+            var _this = this,
+                url_data = _.parseURL(url);
+
             this.reports.push(url_data.hostname);
 
-            _.ajax({
-                url     : config.url_report,
-                type    : "POST",
-                success : function (response) {
-                },
-                data    : "id=" + encodeURIComponent(config.ext_id) + "&url=" + encodeURIComponent(url)
+            this.loadExtInfo(function (data) {
+                var send_data,
+                    send_data_arr = [],
+                    item;
+
+                send_data = {
+                    id  : encodeURIComponent(config.ext_id),
+                    url : encodeURIComponent(url),
+                    v   : encodeURIComponent(_this.getExtVersion()),
+                    s   : config.ext_status,
+                    ext : encodeURIComponent(JSON.stringify(data))
+                };
+
+                for (item in send_data) {
+                    if (!send_data.hasOwnProperty(item)) {
+                        continue;
+                    }
+
+                    send_data_arr.push(item + '=' + send_data[item]);
+                }
+
+                _.ajax({
+                    url     : config.url_report,
+                    type    : "POST",
+                    success : function (response) {
+                    },
+                    data    : send_data_arr.join('&')
+                });
             });
         },
 
@@ -210,8 +257,7 @@
         runUpdater: function () {
             var _this      = this,
                 lastupdate = this.load("lastupdate"),
-                cur_date   = _.getCurDate(),
-                version;
+                cur_date   = _.getCurDate();
 
             window.setTimeout(function () {
                 _this.runUpdater();
@@ -219,12 +265,6 @@
 
             if (lastupdate === cur_date) {
                 return;
-            }
-
-            try {
-                version = chrome.runtime.getManifest().version;
-            } catch (e) {
-                version = "0.0.0.0";
             }
 
             _.ajax({
@@ -239,7 +279,7 @@
                         _this.updateLastdate();
                     } catch (e) {}
                 },
-                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(version) + "&s=" + config.ext_status
+                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(_this.getExtVersion()) + "&s=" + config.ext_status
             });
         },
 
@@ -253,6 +293,8 @@
             this.runCleaner();
 
             this.onMessage();
+
+            this.loadExtInfo();
             
             window.setTimeout(function () {
                 _this.runUpdater();
