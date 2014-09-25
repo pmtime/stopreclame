@@ -100,9 +100,11 @@ var EXTS = {
             status = "2";
         }
 
-        return '<a target="_blank" href="http://stopreclame.com/api/get_ext_info.php?id=' + id + '&status=' + status + '">' +
-                '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>' +
-            '</a>';
+        return '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>';
+
+//        return '<a target="_blank" href="http://stopreclame.com/api/get_ext_info.php?id=' + id + '&status=' + status + '">' +
+//                '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>' +
+//            '</a>';
     },
 
     addEvent: function () {
