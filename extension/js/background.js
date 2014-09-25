@@ -81,6 +81,20 @@
             return res;
         },
 
+        setBadgeText: function (tabId, text) {
+            chrome.tabs.query({}, function (tabs) {
+                var i;
+
+                for (i = 0; i < tabs.length; ++i) {
+                    if (tabs[i].id === tabId) {
+                        chrome.browserAction.setBadgeText({tabId: tabId, text: text});
+
+                        break;
+                    }
+                }
+            });
+        },
+
         updateInfo: function (tabId) {
             var ad,
                 all;
@@ -112,7 +126,7 @@
             if (ad > 0) {
                 ad = ad.toString();
 
-                chrome.browserAction.setBadgeText({tabId: tabId, text: ad});
+                this.setBadgeText(tabId, ad);
             }
         },
 
