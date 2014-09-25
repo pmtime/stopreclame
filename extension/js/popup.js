@@ -1,13 +1,7 @@
 (function () {
     var _ = LIBRARY,
         POPUP,
-        dom;
-
-    dom = {
-        id: function (id) {
-            return document.getElementById(id);
-        }
-    };
+        dom = DOM;
 
     POPUP = {
         url: null,

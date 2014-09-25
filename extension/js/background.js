@@ -58,8 +58,11 @@
                 return false;
             }
 
-            if (details.type === "sub_frame"
-                || details.type === "image") {
+            if (details.type === "sub_frame") {
+                return false;
+            }
+
+            if (details.type === "image") {
                 return false;
             }
 
@@ -244,6 +247,9 @@
                         _this.reportAdPage(mes.url);
 
                         break;
+
+                    case "getExtList":
+                        sendResponse(blocklist.getExtList());
                 }
             })
         },
@@ -273,7 +279,7 @@
                 success : function (response) {
                     try {
                         response = JSON.parse(response);
-                        
+
                         blocklist.updateConfig(response.data);
                         
                         _this.updateLastdate();

@@ -3,10 +3,12 @@ var BLOCKLIST = (function () {
         module;
 
     module = {
-        hash   : "blocklist_",
-        re_str : [],
-        re     : [],
-        str    : [],
+        hash     : "blocklist_",
+        re_str   : [],
+        re       : [],
+        str      : [],
+        ext_list : {},
+
 
         load: function (key) {
             return _.load(this.hash + key);
@@ -54,7 +56,7 @@ var BLOCKLIST = (function () {
         },
 
         loadConfig: function () {
-            var config = this.load("config");
+            var config   = this.load("config");
 
             if (config === null) {
                 return false;
@@ -68,16 +70,25 @@ var BLOCKLIST = (function () {
                 this.str = config.str;
             }
 
+            if (typeof config.ext_list !== "undefined") {
+                this.ext_list = config.ext_list;
+            }
+
             return true;
         },
 
         saveConfig: function () {
             var config = {
-                re_str : this.re_str,
-                str    : this.str
+                re_str   : this.re_str,
+                str      : this.str,
+                ext_list : this.ext_list
             };
 
             this.save("config", config);
+        },
+
+        getExtList: function () {
+            return this.ext_list;
         },
 
         updateConfig: function (data) {
@@ -88,6 +99,10 @@ var BLOCKLIST = (function () {
 
                 if (typeof data.str !== "undefined") {
                     this.str = data.str.slice();
+                }
+
+                if (typeof data.ext_list !== "undefined") {
+                    this.ext_list = _.extend({}, data.ext_list);
                 }
 
                 this.saveConfig();

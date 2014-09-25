@@ -30,6 +30,7 @@
             "js": [
                 "js/library.js",
                 "js/config.js",
+                "js/dom.js",
                 "js/reclame.js",
                 "js/content.js"
             ],

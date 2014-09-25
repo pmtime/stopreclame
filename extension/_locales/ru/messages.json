@@ -1,76 +1,73 @@
 {
     "ext_name": {
-        "message": "Stop Reclame",
-        "description": "desc"
+        "message": "Stop Reclame"
     },
 
     "total_blocked": {
-        "message": "Всего заблокировано:",
-        "description": ""
+        "message": "Всего заблокировано:"
     },
 
     "page_blocked": {
-        "message": "Заблокировано на данной странице:",
-        "description": ""
+        "message": "Заблокировано на данной странице:"
     },
 
     "page_has_ad": {
-        "message": "Есть реклама на сайте?",
-        "description": ""
+        "message": "Есть реклама на сайте?"
     },
 
     "was_report": {
-        "message": "Сообщение отправлено",
-        "description": ""
+        "message": "Сообщение отправлено"
     },
 
     "create_report": {
-        "message": "Сообщить",
-        "description": ""
+        "message": "Сообщить"
     },
 
     "vk_link": {
-        "message": "Группа вконтакте",
-        "description": ""
+        "message": "Группа вконтакте"
     },
 
     "popup_description": {
-        "message": "кол-во удаленной рекламы",
-        "description": ""
+        "message": "кол-во удаленной рекламы"
     },
 
     "view_extensions": {
-        "message": "Показать расширения",
-        "description": ""
+        "message": "Показать расширения"
     },
 
     "extension": {
-        "message": "Расширение",
-        "description": ""
+        "message": "Расширение"
     },
 
     "version": {
-        "message": "Версия",
-        "description": ""
+        "message": "Версия"
     },
 
     "description": {
-        "message": "Описание",
-        "description": ""
+        "message": "Описание"
     },
 
     "on": {
-        "message": "Вкл.",
-        "description": ""
+        "message": "Вкл."
     },
 
     "on_full": {
-        "message": "Включено",
-        "description": ""
+        "message": "Включено"
     },
 
     "remove": {
-        "message": "Удалить",
-        "description": ""
+        "message": "Удалить"
+    },
+
+    "title_ext_inject_ad": {
+        "message": "Расширение вставляет рекламу!"
+    },
+
+    "title_ext_can_to_inject": {
+        "message": "Расширение может вставлять рекламу!"
+    },
+
+    "title_ext_does_not_inject": {
+        "message": "Расширение не вставляет рекламу"
     }
 }

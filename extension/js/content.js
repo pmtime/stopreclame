@@ -1,70 +1,48 @@
-var DOM = {
-    id: function (id) {
-        return document.getElementById(id);
-    },
-    create: function (tag_name) {
-        if (!tag_name || typeof tag_name !== "string") {
-            tag_name = "div";
-        }
+(function () {
+    var CONTENT = {
+        check_period: 400,
 
-        return document.createElement(tag_name);
-    },
-    remove: function (node) {
-        if (!node) {
-            return true;
-        }
-
-        try {
-            node.parentNode.removeChild(node);
-        } catch (e) {}
-
-        return true;
-    }
-};
-
-var CONTENT = {
-    clear_interval : null,
-
-    clearSites: function () {
-        var fixSite,
-            item,
-            sites = RECLAME.sites || null;
-
-        if (sites === null) {
-            return;
-        }
-
-        fixSite = function (site) {
+        fixSite: function (site) {
             var obj = site.fixReclame();
 
             if (!!obj) {
                 LIBRARY.msgBackground({action: "incStat"});
                 DOM.remove(obj.el);
             }
-        };
+        },
 
-        for (item in sites) {
-            if (!sites.hasOwnProperty(item)) {
-                continue;
+        clearSites: function () {
+            var _this = this,
+                item,
+                sites = RECLAME.sites || null;
+
+            if (sites === null) {
+                return;
             }
 
-            if (sites[item].is()) {
-                (function (site) {
-                    fixSite(site);
+            for (item in sites) {
+                if (!sites.hasOwnProperty(item)) {
+                    continue;
+                }
 
-                    window.setInterval(function() {
-                        fixSite(site);
-                    }, 400);
-                }(sites[item]));
+                if (sites[item].is()) {
+                    (function (site) {
+                        _this.fixSite(site);
 
-                break;
+                        window.setInterval(function () {
+                            _this.fixSite(site);
+                        }, _this.check_period);
+                    }(sites[item]));
+
+                    break;
+                }
             }
+        },
+
+        run: function () {
+            this.clearSites();
         }
-    },
+    };
 
-    run: function () {
-        this.clearSites();
-    }
-};
-
-CONTENT.run();
+    CONTENT.run();
+}());

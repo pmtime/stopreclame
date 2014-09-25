@@ -1,14 +1,19 @@
+var _ = LIBRARY;
+
 var EXTS = {
-    ext_name: chrome.runtime.getManifest().name,
-    list: [],
+    ext_name : chrome.runtime.getManifest().name,
+    list     : [],
+    ext_list : {},
 
     view: function () {
-        var i,
+        var _this = this,
+            i,
             html = '',
             getTr = function (data) {
                 var html = '';
 
                 html += '<tr data-id="' + data.id + '">' +
+                        '<td>' + _this.getInfoExtension(data.id) + '</td>' +
                         '<td class="f-weight">' + data.name + '</td>' +
                         '<td class="ta-center">' + data.version + '</td>' +
                         '<td>' + data.description + '</td>' +
@@ -24,6 +29,7 @@ var EXTS = {
 
         html += '<table><thead>' +
                 '<tr>' +
+                    '<th style="width: 50px;"></th>' +
                     '<th>' + chrome.i18n.getMessage("extension") + '</th>' +
                     '<th style="width: 150px;">' + chrome.i18n.getMessage("version") + '</th>' +
                     '<th>' + chrome.i18n.getMessage("description") + '</th>' +
@@ -51,10 +57,59 @@ var EXTS = {
         this.addEvent();
     },
 
+    loadInfoExtension: function (callback) {
+        var _this = this;
+
+        _.msgBackground({action: 'getExtList'}, function (data) {
+            _this.ext_list = data;
+
+            callback();
+        });
+    },
+
+    getStatusTitle: function (status) {
+        var status_title = "";
+
+        switch (status) {
+            case '0':
+                status_title = chrome.i18n.getMessage("title_ext_inject_ad");
+                break;
+
+            case '1':
+                status_title = chrome.i18n.getMessage("title_ext_can_to_inject");
+                break;
+
+            case '2':
+                status_title = chrome.i18n.getMessage("title_ext_does_not_inject");
+
+                break;
+
+            default:
+                break;
+        }
+
+        return status_title;
+    },
+
+    getInfoExtension: function (id) {
+        var status;
+
+        if (typeof this.ext_list[id] !== "undefined") {
+            status = this.ext_list[id];
+        } else {
+            status = "2";
+        }
+
+        return '<a target="_blank" href="http://stopreclame.com/api/get_ext_info.php?id=' + id + '&status=' + status + '">' +
+                '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>' +
+            '</a>';
+    },
+
     addEvent: function () {
         var _this = this,
             inputs = document.getElementById("dv_data").getElementsByTagName("input"),
-            i;
+            i,
+            buttons;
 
         for (i = 0; i < inputs.length; ++i) {
             inputs[i].addEventListener("change", function(e) {
@@ -67,7 +122,7 @@ var EXTS = {
             }, false);
         }
 
-        var buttons = document.getElementById("dv_data").getElementsByTagName("button");
+        buttons = document.getElementById("dv_data").getElementsByTagName("button");
 
         for (i = 0; i < buttons.length; ++i) {
             buttons[i].addEventListener("click", function(e) {
@@ -103,7 +158,11 @@ var EXTS = {
     },
 
     run: function () {
-        this.reDraw();
+        var _this = this;
+
+        _this.loadInfoExtension(function () {
+            _this.reDraw();
+        });
     }
 };
 

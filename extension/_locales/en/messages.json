@@ -1,76 +1,73 @@
 {
     "ext_name": {
-        "message": "Stop Reclame",
-        "description": "desc"
+        "message": "Stop Reclame"
     },
 
     "total_blocked": {
-        "message": "Total blocked:",
-        "description": ""
+        "message": "Total blocked:"
     },
 
     "page_blocked": {
-        "message": "On current page blocked:",
-        "description": ""
+        "message": "On current page blocked:"
     },
 
     "page_has_ad": {
-        "message": "Does the page have an ad?",
-        "description": ""
+        "message": "Does the page have an ad?"
     },
 
     "was_report": {
-        "message": "Report sended",
-        "description": ""
+        "message": "Report sended"
     },
 
     "create_report": {
-        "message": "Report",
-        "description": ""
+        "message": "Report"
     },
 
     "vk_link": {
-        "message": "vk.com group",
-        "description": ""
+        "message": "vk.com group"
     },
 
     "popup_description": {
-        "message": "ad was removed",
-        "description": ""
+        "message": "ad was removed"
     },
 
     "view_extensions": {
-        "message": "View extensions",
-        "description": ""
+        "message": "View extensions"
     },
 
     "extension": {
-        "message": "Extension",
-        "description": ""
+        "message": "Extension"
     },
 
     "version": {
-        "message": "Version",
-        "description": ""
+        "message": "Version"
     },
 
     "description": {
-        "message": "Description",
-        "description": ""
+        "message": "Description"
     },
 
     "on": {
-        "message": "On",
-        "description": ""
+        "message": "On"
     },
 
     "on_full": {
-        "message": "On",
-        "description": ""
+        "message": "On"
     },
 
     "remove": {
-        "message": "Remove",
-        "description": ""
+        "message": "Remove"
+    },
+
+    "title_ext_inject_ad": {
+        "message": "Extension injects ad!"
+    },
+
+    "title_ext_can_to_inject": {
+        "message": "Extension can to inject ad!"
+    },
+
+    "title_ext_does_not_inject": {
+        "message": "Extension doesn't inject ad."
     }
 }
