@@ -1,0 +1,73 @@
+{
+    "ext_name": {
+        "message": "Stop Reclame"
+    },
+
+    "total_blocked": {
+        "message": "Всего заблокировано:"
+    },
+
+    "page_blocked": {
+        "message": "Заблокировано на данной странице:"
+    },
+
+    "page_has_ad": {
+        "message": "Есть реклама на сайте?"
+    },
+
+    "was_report": {
+        "message": "Сообщение отправлено"
+    },
+
+    "create_report": {
+        "message": "Сообщить"
+    },
+
+    "vk_link": {
+        "message": "Группа вконтакте"
+    },
+
+    "popup_description": {
+        "message": "кол-во удаленной рекламы"
+    },
+
+    "view_extensions": {
+        "message": "Показать расширения"
+    },
+
+    "extension": {
+        "message": "Расширение"
+    },
+
+    "version": {
+        "message": "Версия"
+    },
+
+    "description": {
+        "message": "Описание"
+    },
+
+    "on": {
+        "message": "Вкл."
+    },
+
+    "on_full": {
+        "message": "Включено"
+    },
+
+    "remove": {
+        "message": "Удалить"
+    },
+
+    "title_ext_inject_ad": {
+        "message": "Расширение вставляет рекламу!"
+    },
+
+    "title_ext_can_to_inject": {
+        "message": "Расширение может вставлять рекламу!"
+    },
+
+    "title_ext_does_not_inject": {
+        "message": "Расширение не вставляет рекламу"
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "ext_name": {
+        "message": "Stop Reclame"
+    },
+
+    "total_blocked": {
+        "message": "Gesamt blockert:"
+    },
+
+    "page_blocked": {
+        "message": "Auf der aktuellen Seite blockiert"
+    },
+
+    "page_has_ad": {
+        "message": "Hat Page Anzeigen?"
+    },
+
+    "was_report": {
+        "message": "Mitteilung gesendet"
+    },
+
+    "create_report": {
+        "message": "Bericht"
+    },
+
+    "vk_link": {
+        "message": "Gruppe vk"
+    },
+
+    "popup_description": {
+        "message": "Anzahl der Anzeigen"
+    },
+
+    "view_extensions": {
+        "message": "Show Erweiterungen"
+    },
+
+    "extension": {
+        "message": "Erweiterungen"
+    },
+
+    "version": {
+        "message": "Version"
+    },
+
+    "description": {
+        "message": "Beschreibung"
+    },
+
+    "on": {
+        "message": "On"
+    },
+
+    "on_full": {
+        "message": "Inbegriffen"
+    },
+
+    "remove": {
+        "message": "Entfernen"
+    },
+
+    "title_ext_inject_ad": {
+        "message": "Erweiterungen einfügst Anzeigen!"
+    },
+
+    "title_ext_can_to_inject": {
+        "message": "Erweiterungen kann Anzeigen einfügen!"
+    },
+
+    "title_ext_does_not_inject": {
+        "message": "Erweiterungen enthält keine Anzeigen einfügen."
+    }
+}
