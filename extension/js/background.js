@@ -73,8 +73,6 @@
 
             if (res) {
                 if (details.type === "image") {
-                    this.updateInfo(details.tabId);
-
                     return {redirectUrl: this.img_opacity};
                 }
 
