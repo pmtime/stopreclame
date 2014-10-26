@@ -5,13 +5,14 @@
         BACKGROUND;
 
     BACKGROUND = {
-        blocklist : BLOCKLIST,
-        ext_id    : null,
-        hash      : "background_",
+        blocklist   : BLOCKLIST,
+        ext_id      : null,
+        hash        : "background_",
 
-        tabs      : {},
+        tabs        : {},
 
-        reports   : [],
+        reports     : [],
+        img_opacity : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC",
 
         load: function (key) {
             return _.load(this.hash + key);
@@ -51,34 +52,38 @@
             var res;
 
             if (config.ext_status === "0") {
-                return false;
+                return {cancel: false};
             }
 
             if (details.tabId < 1) {
-                return false;
+                return {cancel: false};
             }
 
             if (details.type === "sub_frame") {
-                return false;
-            }
-
-            if (details.type === "image") {
-                return false;
+                return {cancel: false};
             }
 
             if (details.type === "main_frame") {
                 delete this.tabs[details.tabId];
 
-                return false;
+                return {cancel: false};
             }
 
             res = blocklist.inList(details.url);
 
             if (res) {
+                if (details.type === "image") {
+                    this.updateInfo(details.tabId);
+
+                    return {redirectUrl: this.img_opacity};
+                }
+
                 this.updateInfo(details.tabId);
+
+                return {cancel: true};
             }
 
-            return res;
+            return {cancel: false};
         },
 
         setBadgeText: function (tabId, text) {
@@ -124,7 +129,12 @@
             }
 
             if (ad > 0) {
-                ad = ad.toString();
+                if (ad > 99) {
+                    ad = "99+"
+                } else {
+                    ad = ad.toString();
+                }
+
 
                 this.setBadgeText(tabId, ad);
             }
@@ -136,9 +146,7 @@
                 opt_extraInfoSpec = ["blocking"];
 
             chrome.webRequest.onBeforeRequest.addListener(function (details) {
-                    var cancel = _this.onBeforeRequest(details);
-
-                    return {cancel: cancel};
+                    return _this.onBeforeRequest(details);
                 }, filter, opt_extraInfoSpec);
         },
 
