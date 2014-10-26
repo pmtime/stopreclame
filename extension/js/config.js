@@ -1,8 +1,8 @@
 var CONFIG = (function () {
 	var _ = LIBRARY,
 		module,
-		//domain = "http://127.0.0.1:3000/system";
-		domain = "http://stopreclame.com/api";
+		domain = "http://127.0.0.1:3000/system";
+//		domain = "http://stopreclame.com/api";
 
 	module = {
 	    saving_params: [
@@ -17,6 +17,7 @@ var CONFIG = (function () {
 	    url_report        : domain + "/report.php",
 	    ext_id            : "0",
 	    hash              : "config_",
+		browser           : "chrome",
 
 	    load: function (key) {
 	    	return _.load(this.hash + key);

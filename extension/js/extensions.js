@@ -13,7 +13,7 @@ var EXTS = {
                 var html = '';
 
                 html += '<tr data-id="' + data.id + '">' +
-                        '<td>' + _this.getInfoExtension(data.id) + '</td>' +
+                        '<td>' + _this.getInfoExtension(data.id, data.name) + '</td>' +
                         '<td class="f-weight">' + data.name + '</td>' +
                         '<td class="ta-center">' + data.version + '</td>' +
                         '<td>' + data.description + '</td>' +
@@ -91,20 +91,13 @@ var EXTS = {
         return status_title;
     },
 
-    getInfoExtension: function (id) {
-        var status;
+    getInfoExtension: function (id, name) {
+        var status,
+            md5_code = md5(id + '_' + name);
 
-        if (typeof this.ext_list[id] !== "undefined") {
-            status = this.ext_list[id];
-        } else {
-            status = "2";
-        }
+        status = this.ext_list[md5_code] || "2";
 
         return '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>';
-
-//        return '<a target="_blank" href="http://stopreclame.com/api/get_ext_info.php?id=' + id + '&status=' + status + '">' +
-//                '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>' +
-//            '</a>';
     },
 
     addEvent: function () {

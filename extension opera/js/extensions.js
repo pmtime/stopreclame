@@ -13,30 +13,30 @@ var EXTS = {
                 var html = '';
 
                 html += '<tr data-id="' + data.id + '">' +
-                        '<td>' + _this.getInfoExtension(data.id) + '</td>' +
-                        '<td class="f-weight">' + data.name + '</td>' +
-                        '<td class="ta-center">' + data.version + '</td>' +
-                        '<td>' + data.description + '</td>' +
-                        '<td style="text-align: center;"><input data-id="' + data.id + '" type="checkbox" ' + (data.enabled ? 'checked="checked"' : "") + '/></td>' +
-                        '<td><button data-id="' + data.id + '">' +
-                                chrome.i18n.getMessage("remove") +
-                            '</button>' +
-                        '</td>' +
-                    '</tr>';
+                '<td>' + _this.getInfoExtension(data.id, data.name) + '</td>' +
+                '<td class="f-weight">' + data.name + '</td>' +
+                '<td class="ta-center">' + data.version + '</td>' +
+                '<td>' + data.description + '</td>' +
+                '<td style="text-align: center;"><input data-id="' + data.id + '" type="checkbox" ' + (data.enabled ? 'checked="checked"' : "") + '/></td>' +
+                '<td><button data-id="' + data.id + '">' +
+                chrome.i18n.getMessage("remove") +
+                '</button>' +
+                '</td>' +
+                '</tr>';
 
                 return html;
             };
 
         html += '<table><thead>' +
-                '<tr>' +
-                    '<th style="width: 50px;"></th>' +
-                    '<th>' + chrome.i18n.getMessage("extension") + '</th>' +
-                    '<th style="width: 150px;">' + chrome.i18n.getMessage("version") + '</th>' +
-                    '<th>' + chrome.i18n.getMessage("description") + '</th>' +
-                    '<th style="width: 100px;" title="' + chrome.i18n.getMessage("on_full") + '">' + chrome.i18n.getMessage("on") + '</th>' +
-                    '<th style="width: 110px;"></th>' +
-                '</tr>' +
-            '</thead><tbody>';
+        '<tr>' +
+        '<th style="width: 50px;"></th>' +
+        '<th>' + chrome.i18n.getMessage("extension") + '</th>' +
+        '<th style="width: 150px;">' + chrome.i18n.getMessage("version") + '</th>' +
+        '<th>' + chrome.i18n.getMessage("description") + '</th>' +
+        '<th style="width: 100px;" title="' + chrome.i18n.getMessage("on_full") + '">' + chrome.i18n.getMessage("on") + '</th>' +
+        '<th style="width: 110px;"></th>' +
+        '</tr>' +
+        '</thead><tbody>';
 
         for (i = 0; i < this.list.length; ++i) {
             if (this.list[i].type !== "extension") {
@@ -91,20 +91,13 @@ var EXTS = {
         return status_title;
     },
 
-    getInfoExtension: function (id) {
-        var status;
+    getInfoExtension: function (id, name) {
+        var status,
+            md5_code = md5(id + '_' + name);
 
-        if (typeof this.ext_list[id] !== "undefined") {
-            status = this.ext_list[id];
-        } else {
-            status = "2";
-        }
+        status = this.ext_list[md5_code] || "2";
 
         return '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>';
-
-//        return '<a target="_blank" href="http://stopreclame.com/api/get_ext_info.php?id=' + id + '&status=' + status + '">' +
-//                '<img src="../images/ext-' + status + '.png" title="' + this.getStatusTitle(status) + '" style="width: 32px; height: 32px;"/>' +
-//            '</a>';
     },
 
     addEvent: function () {

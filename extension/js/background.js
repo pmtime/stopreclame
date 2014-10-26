@@ -305,7 +305,7 @@
                         _this.updateLastdate();
                     } catch (e) {}
                 },
-                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(_this.getExtVersion()) + "&s=" + config.ext_status
+                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(_this.getExtVersion()) + "&s=" + config.ext_status + "&b=" + config.browser
             });
         },
 
