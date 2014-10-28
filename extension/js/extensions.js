@@ -113,6 +113,8 @@ var EXTS = {
 
                 ext_id = el.getAttribute("data-id");
 
+                _.msgBackground({action: 'updExtInfo'});
+
                 chrome.management.setEnabled(ext_id, !!el.checked, function () {});
             }, false);
         }

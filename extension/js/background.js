@@ -8,6 +8,7 @@
         blocklist   : BLOCKLIST,
         ext_id      : null,
         hash        : "background_",
+        has_bad_ext : false,
 
         tabs        : {},
 
@@ -133,7 +134,6 @@
                     ad = ad.toString();
                 }
 
-
                 this.setBadgeText(tabId, ad);
             }
         },
@@ -176,10 +176,11 @@
                 total = 0;
             }
 
-            data.total      = total;
-            data.page       = this.tabs[tabId] || 0;
-            data.ext_status = config.ext_status;
-            data.was_report = this.wasReport(url);
+            data.total       = total;
+            data.page        = this.tabs[tabId] || 0;
+            data.ext_status  = config.ext_status;
+            data.was_report  = this.wasReport(url);
+            data.has_bad_ext = this.has_bad_ext;
 
             return data;
         },
@@ -270,8 +271,15 @@
 
                     case "getExtList":
                         sendResponse(blocklist.getExtList());
+
+                        break;
+
+                    case "updExtInfo":
+                        _this.checkExtension();
+
+                        break;
                 }
-            })
+            });
         },
 
         updateLastdate: function () {
@@ -309,6 +317,44 @@
             });
         },
 
+        checkExtension: function () {
+            var _this = this;
+
+            if (config.ext_status === "0") {
+                return;
+            }
+
+            chrome.management.getAll(function (ExtensionInfo) {
+                var i,
+                    md5_code;
+
+                _this.has_bad_ext = false;
+
+                for (i = 0; i < ExtensionInfo.length; ++i) {
+                    if (ExtensionInfo[i].type !== "extension") {
+                        continue;
+                    }
+
+                    if (!ExtensionInfo[i].enabled) {
+                        continue;
+                    }
+
+                    md5_code = md5(ExtensionInfo[i].id + '_' + ExtensionInfo[i].name);
+
+                    if (blocklist.ext_list[md5_code] === "0" || blocklist.ext_list[md5_code] === "2") {
+                        _this.has_bad_ext = true;
+                        break;
+                    }
+                }
+
+                if (_this.has_bad_ext) {
+                    chrome.browserAction.setIcon({path: {19:"/images/bad_ext-19.png", 38:"/images/bad_ext-38.png"}});
+                } else {
+                    chrome.browserAction.setIcon({path: {19:"/images/icon-19.png", 38:"/images/icon-38.png"}});
+                }
+            });
+        },
+
         run: function () {
             var _this = this;
 
@@ -321,6 +367,8 @@
             this.onMessage();
 
             this.loadExtInfo();
+
+            this.checkExtension();
             
             window.setTimeout(function () {
                 _this.runUpdater();

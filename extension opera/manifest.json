@@ -1,13 +1,13 @@
 {
     "name": "Stop Reclame",
-    "version": "2.3.1.0",
+    "version": "2.4.0.0",
     "manifest_version": 2,
 
     "description": "Stop Reclame",
     "default_locale": "en",
 
     "background": {
-   		"page": "html/background.html"
+        "page": "html/background.html"
     },
 
     "icons": {

@@ -4,13 +4,14 @@
         dom = DOM;
 
     POPUP = {
-        url: null,
-        ext_status: "1",
+        url         : null,
+        ext_status  : "1",
+        has_bad_ext : false,
 
         getData: function (callback) {
             var _this = this;
 
-            chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT }, function (tabs) {
+            chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}, function (tabs) {
                 var tabId;
 
                 if (tabs.length === 0) {
@@ -20,13 +21,13 @@
                 tabId = tabs[0].id;
 
                 _this.url = tabs[0].url;
-                
+
                 _.msgBackground({action: 'getPopupData', tabId: tabId, url: _this.url}, function (data) {
                     if (typeof callback === "function") {
                         callback(data);
                     }
                 });
-            });    
+            });
         },
 
         addBind: function () {
@@ -108,29 +109,30 @@
             this.getData(function (data) {
                 var bn_onoff = dom.id("bn_onoff_container");
 
-                _this.ext_status = data.ext_status;
-                _this.was_report = data.was_report;
+                _this.ext_status  = data.ext_status;
+                _this.was_report  = data.was_report;
+                _this.has_bad_ext = data.has_bad_ext;
 
                 if (data.ext_status === "0") {
                     bn_onoff.innerHTML = "" +
-                        '<div class="onoffswitch">' +
-                            '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">' +
-                            '<label class="onoffswitch-label" for="myonoffswitch">' +
-                                '<span class="onoffswitch-inner"></span>' +
-                                '<span class="onoffswitch-switch"></span>' +
-                            '</label>' +
-                        '</div>';
+                    '<div class="onoffswitch">' +
+                    '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">' +
+                    '<label class="onoffswitch-label" for="myonoffswitch">' +
+                    '<span class="onoffswitch-inner"></span>' +
+                    '<span class="onoffswitch-switch"></span>' +
+                    '</label>' +
+                    '</div>';
 
                     document.body.className = "on-false";
                 } else {
                     bn_onoff.innerHTML = "" +
-                        '<div class="onoffswitch">' +
-                            '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>' +
-                            '<label class="onoffswitch-label" for="myonoffswitch">' +
-                                '<span class="onoffswitch-inner"></span>' +
-                                '<span class="onoffswitch-switch"></span>' +
-                            '</label>' +
-                        '</div>';
+                    '<div class="onoffswitch">' +
+                    '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>' +
+                    '<label class="onoffswitch-label" for="myonoffswitch">' +
+                    '<span class="onoffswitch-inner"></span>' +
+                    '<span class="onoffswitch-switch"></span>' +
+                    '</label>' +
+                    '</div>';
                 }
 
                 _this.checkBnReport();
@@ -139,6 +141,10 @@
                 dom.id("page_blocked").innerHTML = data.page;
 
                 _this.addBind();
+
+                if (_this.has_bad_ext) {
+                    dom.id("view_extensions").getElementsByTagName("img")[0].setAttribute("src", "../images/extension_bad.png")
+                }
             });
         }
     };
