@@ -66,8 +66,6 @@
 
             if (details.type === "main_frame") {
                 delete this.tabs[details.tabId];
-
-                return {cancel: false};
             }
 
             res = blocklist.inList(details.url);
