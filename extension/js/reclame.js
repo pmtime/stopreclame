@@ -54,7 +54,7 @@ var RECLAME = {};
 
             if (!document.getElementById(site_el_id)) {
                 style = document.createElement('style');
-                style.innerHTML = '.w-text-banner_outer, .rb_banner, .image_banner, .banner_left {' +
+                style.innerHTML = '.w-text-banner_outer, .rb_banner, .image_banner, .banner_left, .portal-banner {' +
                 'opacity: 0 !important; ' +
                 'position: fixed !important; ' +
                 'width: 6px !important;' +
