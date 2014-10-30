@@ -71,4 +71,31 @@ var RECLAME = {};
             }
         }
     };
+
+    RECLAME.sites['google'] = {
+        is: function () {
+            return window.location.hostname.indexOf('google') !== -1;
+        },
+        fixReclame: function() {
+            var style;
+
+            if (!document.getElementById(site_el_id)) {
+                style = document.createElement('style');
+                style.innerHTML = '#tads, #tadsb, #mbEnd {' +
+                'opacity: 0 !important; ' +
+                'position: fixed !important; ' +
+                'width: 6px !important;' +
+                'height: 6px !important;' +
+                'top: -1000px !important; ' +
+                'left: -1000px !important; ' +
+                '} ';
+
+                style.setAttribute('id', site_el_id);
+
+                if (!!document.head) {
+                    document.head.appendChild(style);
+                }
+            }
+        }
+    };
 }());

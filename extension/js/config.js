@@ -2,7 +2,7 @@ var CONFIG = (function () {
     var _ = LIBRARY,
         module,
         //domain = "http://127.0.0.1:3000/system";
-		domain = "http://stopreclame.com/api";
+        domain = "http://stopreclame.com/api";
 
     module = {
         saving_params: [
