@@ -60,10 +60,6 @@
                 return {cancel: false};
             }
 
-            if (details.type === "sub_frame") {
-                return {cancel: false};
-            }
-
             if (details.type === "main_frame") {
                 delete this.tabs[details.tabId];
             }
@@ -72,6 +68,11 @@
 
             if (res) {
                 if (details.type === "image") {
+                    return {redirectUrl: this.img_opacity};
+                }
+
+                if (details.type === "sub_frame") {
+                    this.updateInfo(details.tabId);
                     return {redirectUrl: this.img_opacity};
                 }
 
