@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Stop Reclame</title>
+
+    <meta name="description" content="Stop Reclame"/>
+
+    <link rel="stylesheet" href="../css/report.css" />
+
+    <script type="text/javascript" src="../js/library.js"></script>
+    <script type="text/javascript" src="../js/dom.js"></script>
+    <script type="text/javascript" src="../js/report/report.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h1>Отчет</h1>
+        <input id="report_screen_flag" type="checkbox"> Прикрепить скриншот к отчету
+        <br>
+        <input id="report_ext_flag" type="checkbox"> Прикрепить данные о расширениях
+        <div>
+            <button id="bn_send_report" type="button">Отправить</button>
+            <button id="bn_close" type="button">Отмена</button>
+        </div>
+        <br>
+        URL: <span id="report_url"></span>
+        <div id="report_screen"></div>
+        <div id="report_ext"></div>
+        <br>
+    </div>
+    <div id="dv_autor">
+        <a class="link-show" target="_blank" title="Developed by Denys Skychko" href="http://skychko.com">
+            © Skychko, 2014
+        </a>
+    </div>
+</body>
+</html>

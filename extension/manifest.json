@@ -44,12 +44,15 @@
     ],
 
     "permissions": [
-        "management",
-        "webRequest",
-        "webRequestBlocking",
-        "privacy",
-        "tabs",
+        "<all_urls>",
+        "activeTab",
         "http://*/*",
-        "https://*/*"
+        "https://*/*",
+        "management",
+        "privacy",
+        "tabCapture",
+        "tabs",
+        "webRequest",
+        "webRequestBlocking"
     ]
 }
