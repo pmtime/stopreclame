@@ -69,5 +69,9 @@
 
     "title_ext_does_not_inject": {
         "message": "Розширення не вставяє рекламу"
+    },
+
+    "block_cookies": {
+        "message": "Заблокувати 3rd party cookies"
     }
 }

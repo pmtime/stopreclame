@@ -31,7 +31,8 @@
         },
 
         addBind: function () {
-            var _this = this,
+            var _this      = this,
+                el_cookies = dom.id('block_party_cookies'),
                 el_onoff,
                 el_report;
 
@@ -46,6 +47,12 @@
                 document.body.className = ("on-" + checked);
 
                 _.msgBackground({action: 'changeExtStatus', enable: checked});
+
+                if (checked) {
+                    el_cookies.removeAttribute('disabled');
+                } else {
+                    el_cookies.setAttribute('disabled', 'disabled');
+                }
 
                 _this.checkBnReport();
             }, false);
@@ -67,6 +74,10 @@
                     _.msgBackground({action: 'adReport', url: _this.url});
                 });
             }
+
+            dom.id('block_party_cookies').addEventListener('change', function () {
+                _.msgBackground({action: 'changePartyCookies'});
+            });
         },
 
         checkBnReport: function () {
@@ -89,10 +100,11 @@
         },
 
         setI18n: function () {
-            dom.id("total_blocked_info").innerHTML = chrome.i18n.getMessage("total_blocked");
-            dom.id("page_blocked_info").innerHTML  = chrome.i18n.getMessage("page_blocked");
-            dom.id("page_has_ad").innerHTML        = chrome.i18n.getMessage("page_has_ad");
-            dom.id("bn_error_report").innerHTML    = chrome.i18n.getMessage("create_report");
+            dom.id("total_blocked_info").innerHTML       = chrome.i18n.getMessage("total_blocked");
+            dom.id("page_blocked_info").innerHTML        = chrome.i18n.getMessage("page_blocked");
+            dom.id("page_has_ad").innerHTML              = chrome.i18n.getMessage("page_has_ad");
+            dom.id("bn_error_report").innerHTML          = chrome.i18n.getMessage("create_report");
+            dom.id('block_party_cookies_text').innerHTML = chrome.i18n.getMessage("block_cookies");
             dom.id("vk_link").setAttribute("title", chrome.i18n.getMessage("vk_link"));
             dom.id("view_extensions").setAttribute("title", chrome.i18n.getMessage("view_extensions"));
         },
@@ -107,7 +119,7 @@
             this.setI18n();
             this.setViewExtensionUrl();
             this.getData(function (data) {
-                var bn_onoff = dom.id("bn_onoff_container");
+                var bn_onoff         = dom.id("bn_onoff_container");
 
                 _this.ext_status  = data.ext_status;
                 _this.was_report  = data.was_report;
@@ -139,6 +151,7 @@
 
                 dom.id("total_blocked").innerHTML = data.total;
                 dom.id("page_blocked").innerHTML = data.page;
+                dom.id('block_party_cookies').checked = !data.party_cookies;
 
                 _this.addBind();
 

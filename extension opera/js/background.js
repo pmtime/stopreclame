@@ -5,10 +5,11 @@
         BACKGROUND;
 
     BACKGROUND = {
-        blocklist   : BLOCKLIST,
-        ext_id      : null,
-        hash        : "background_",
-        has_bad_ext : false,
+        blocklist     : BLOCKLIST,
+        ext_id        : null,
+        hash          : "background_",
+        has_bad_ext   : false,
+        party_cookies : false,
 
         tabs        : {},
 
@@ -180,6 +181,7 @@
             data.ext_status  = config.ext_status;
             data.was_report  = this.wasReport(url);
             data.has_bad_ext = this.has_bad_ext;
+            data.party_cookies = this.party_cookies;
 
             return data;
         },
@@ -252,6 +254,11 @@
 
                     case "updExtInfo":
                         _this.checkExtension();
+
+                        break;
+
+                    case 'changePartyCookies':
+                        _this.changePartyCookies();
 
                         break;
                 }
@@ -331,8 +338,26 @@
             });
         },
 
+        changePartyCookies: function () {
+            var _this = this;
+
+            chrome.privacy.websites.thirdPartyCookiesAllowed.set({'value': !this.party_cookies, 'scope': 'regular'}, function () {
+                _this.party_cookies = !_this.party_cookies;
+            });
+        },
+
+        updInfoPartyCookies: function () {
+            var _this = this;
+
+            chrome.privacy.websites.thirdPartyCookiesAllowed.get({}, function (data) {
+                _this.party_cookies = data.value;
+            });
+        },
+
         run: function () {
             var _this = this;
+
+            this.updInfoPartyCookies();
 
             this.initBlocklist();
 

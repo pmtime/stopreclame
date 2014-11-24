@@ -47,6 +47,7 @@
         "management",
         "webRequest",
         "webRequestBlocking",
+        "privacy",
         "tabs",
         "http://*/*",
         "https://*/*"

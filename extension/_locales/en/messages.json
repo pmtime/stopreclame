@@ -69,5 +69,9 @@
 
     "title_ext_does_not_inject": {
         "message": "Extension doesn't inject ad."
+    },
+
+    "block_cookies": {
+        "message": "Block 3rd party cookies"
     }
 }
