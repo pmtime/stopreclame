@@ -15,17 +15,27 @@
 </head>
 <body>
     <div id="container">
-        <h1>Отчет</h1>
-        <input id="report_screen_flag" type="checkbox"> Прикрепить скриншот к отчету
-        <br>
-        <input id="report_ext_flag" type="checkbox"> Прикрепить данные о расширениях
-        <div>
+        <h1 id="report_header">Отчет</h1>
+        <p>
+            <strong>
+                URL:
+            </strong>
+            <span id="report_url"></span>
+        </p>
+        <p>
+            <input id="report_screen_flag" type="checkbox" checked="true">
+            <span id="report_attach_screen">Прикрепить скриншот к отчету</span>
+        </p>
+        <p>
+            <input id="report_ext_flag" type="checkbox" checked="true">
+            <span id="report_attach_ext">Прикрепить список расширений</span>
+        </p>
+        <p>
             <button id="bn_send_report" type="button">Отправить</button>
             <button id="bn_close" type="button">Отмена</button>
-        </div>
+        </p>
         <br>
-        URL: <span id="report_url"></span>
-        <div id="report_screen"></div>
+        <div id="report_screen" class="aligncenter"></div>
         <div id="report_ext"></div>
         <br>
     </div>

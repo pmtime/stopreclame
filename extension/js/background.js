@@ -315,7 +315,8 @@
                 id  : encodeURIComponent(this.report_data.id),
                 url : encodeURIComponent(this.report_data.url),
                 v   : encodeURIComponent(this.report_data.version),
-                s   : this.report_data.status
+                s   : this.report_data.status,
+                b   : config.browser
             };
 
             if (ext_flag) {
@@ -323,7 +324,7 @@
             }
 
             if (screen_flag) {
-                send_data.ext = encodeURIComponent(this.report_data.screen);
+                send_data.screen = encodeURIComponent(this.report_data.screen);
             }
 
             for (item in send_data) {
@@ -334,15 +335,15 @@
                 send_data_arr.push(item + '=' + send_data[item]);
             }
 
-            console.log(send_data_arr);
+            //console.log(send_data_arr);
 
-            //_.ajax({
-            //    url     : config.url_report,
-            //    type    : 'POST',
-            //    success : function (response) {
-            //    },
-            //    data    : send_data_arr.join('&')
-            //});
+            _.ajax({
+                url     : config.url_report,
+                type    : 'POST',
+                success : function (response) {
+                },
+                data    : send_data_arr.join('&')
+            });
         },
 
         updateLastdate: function () {

@@ -73,5 +73,29 @@
 
     "block_cookies": {
         "message": "Заблокировать 3rd party cookies"
+    },
+
+    "report": {
+        "message": "Отчет"
+    },
+
+    "report_attach_screen": {
+        "message": "Прикрепить скриншот к отчету"
+    },
+
+    "report_attach_ext": {
+        "message": "Прикрепить список расширений"
+    },
+
+    "send": {
+        "message": "Отправить"
+    },
+
+    "cancel": {
+        "message": "Отмена"
+    },
+
+    "report_sended": {
+        "message": "Отчет отправлен"
     }
 }
