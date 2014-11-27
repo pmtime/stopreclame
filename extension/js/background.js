@@ -214,10 +214,7 @@
         },
 
         reportAdPage: function (url) {
-            var _this = this,
-                url_data = _.parseURL(url);
-
-            this.reports.push(url_data.hostname);
+            var _this = this;
 
             this.loadExtInfo(function (data) {
                 _this.report_data.id      = config.ext_id;
@@ -309,7 +306,11 @@
         sendReport: function (ext_flag, screen_flag) {
             var send_data,
                 item,
-                send_data_arr = [];
+                send_data_arr = [],
+                url_data;
+
+            url_data = _.parseURL(this.report_data.url);
+            this.reports.push(url_data.hostname);
 
             send_data = {
                 id  : encodeURIComponent(this.report_data.id),
@@ -334,8 +335,6 @@
 
                 send_data_arr.push(item + '=' + send_data[item]);
             }
-
-            //console.log(send_data_arr);
 
             _.ajax({
                 url     : config.url_report,
