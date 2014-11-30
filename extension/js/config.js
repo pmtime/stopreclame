@@ -1,8 +1,8 @@
 var CONFIG = (function () {
     var _ = LIBRARY,
         module,
-        domain = "http://127.0.0.1:3000/system";
-        //domain = "http://stopreclame.com/api";
+        //domain = "http://127.0.0.1:3000/system";
+        domain = "http://stopreclame.com/api";
 
     module = {
         saving_params: [
@@ -15,7 +15,6 @@ var CONFIG = (function () {
         url_upd_blocklist : domain + "/blocklist.php",
         url_period_def    : 24 * 60 * 60 * 1000,
         url_report        : domain + "/report.php",
-//        url_report        : "http://stopreclame.com/api/report.php",
         ext_id            : "0",
         hash              : "config_",
         browser           : "chrome",

@@ -21,13 +21,13 @@
                 tabId = tabs[0].id;
 
                 _this.url = tabs[0].url;
-
+                
                 _.msgBackground({action: 'getPopupData', tabId: tabId, url: _this.url}, function (data) {
                     if (typeof callback === "function") {
                         callback(data);
                     }
                 });
-            });
+            });    
         },
 
         addBind: function () {
@@ -127,24 +127,24 @@
 
                 if (data.ext_status === "0") {
                     bn_onoff.innerHTML = "" +
-                    '<div class="onoffswitch">' +
-                    '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">' +
-                    '<label class="onoffswitch-label" for="myonoffswitch">' +
-                    '<span class="onoffswitch-inner"></span>' +
-                    '<span class="onoffswitch-switch"></span>' +
-                    '</label>' +
-                    '</div>';
+                        '<div class="onoffswitch">' +
+                            '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">' +
+                            '<label class="onoffswitch-label" for="myonoffswitch">' +
+                                '<span class="onoffswitch-inner"></span>' +
+                                '<span class="onoffswitch-switch"></span>' +
+                            '</label>' +
+                        '</div>';
 
                     document.body.className = "on-false";
                 } else {
                     bn_onoff.innerHTML = "" +
-                    '<div class="onoffswitch">' +
-                    '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>' +
-                    '<label class="onoffswitch-label" for="myonoffswitch">' +
-                    '<span class="onoffswitch-inner"></span>' +
-                    '<span class="onoffswitch-switch"></span>' +
-                    '</label>' +
-                    '</div>';
+                        '<div class="onoffswitch">' +
+                            '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>' +
+                            '<label class="onoffswitch-label" for="myonoffswitch">' +
+                                '<span class="onoffswitch-inner"></span>' +
+                                '<span class="onoffswitch-switch"></span>' +
+                            '</label>' +
+                        '</div>';
                 }
 
                 _this.checkBnReport();

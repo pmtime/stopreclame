@@ -10,6 +10,7 @@
         hash          : "background_",
         has_bad_ext   : false,
         party_cookies : false,
+        report_data   : {},
 
         tabs        : {},
 
@@ -176,48 +177,75 @@
                 total = 0;
             }
 
-            data.total       = total;
-            data.page        = this.tabs[tabId] || 0;
-            data.ext_status  = config.ext_status;
-            data.was_report  = this.wasReport(url);
-            data.has_bad_ext = this.has_bad_ext;
+            data.total         = total;
+            data.page          = this.tabs[tabId] || 0;
+            data.ext_status    = config.ext_status;
+            data.was_report    = this.wasReport(url);
+            data.has_bad_ext   = this.has_bad_ext;
             data.party_cookies = this.party_cookies;
 
             return data;
         },
 
-        reportAdPage: function (url) {
-            var _this         = this,
-                url_data      = _.parseURL(url),
-                send_data_arr = [],
-                send_data,
-                item;
+        loadExtInfo: function (callback) {
+            chrome.management.getAll(function (ExtensionInfo) {
+                var i,
+                    ext_list = [];
 
-            this.reports.push(url_data.hostname);
-
-            send_data = {
-                id  : encodeURIComponent(config.ext_id),
-                url : encodeURIComponent(url),
-                v   : encodeURIComponent(_this.getExtVersion()),
-                b   : config.browser,
-                s   : config.ext_status
-            };
-
-            for (item in send_data) {
-                if (!send_data.hasOwnProperty(item)) {
-                    continue;
+                for (i = 0; i < ExtensionInfo.length; ++i) {
+                    ext_list.push({
+                        id      : ExtensionInfo[i].id,
+                        type    : ExtensionInfo[i].type,
+                        name    : ExtensionInfo[i].name,
+                        enabled : (ExtensionInfo[i].enabled ? '1' : '0')
+                    });
                 }
 
-                send_data_arr.push(item + '=' + send_data[item]);
-            }
-
-            _.ajax({
-                url     : config.url_report,
-                type    : "POST",
-                success : function (response) {
-                },
-                data    : send_data_arr.join('&')
+                if (typeof callback === "function") {
+                    callback(ext_list);
+                }
             });
+        },
+
+        showReport: function () {
+            chrome.tabs.create({
+                url: chrome.runtime.getURL("html/report.html")
+            });
+        },
+
+        reportAdPage: function (url) {
+            var _this = this;
+
+            this.loadExtInfo(function (data) {
+                _this.report_data.id      = config.ext_id;
+                _this.report_data.url     = url;
+                _this.report_data.version = _this.getExtVersion();
+                _this.report_data.status  = config.ext_status;
+                _this.report_data.ext     = data;
+
+                _this.takeScreenshot(function () {
+                    _this.showReport();
+                });
+            });
+        },
+
+        takeScreenshot: function (callback) {
+            var _this = this;
+
+            chrome.tabs.captureVisibleTab(
+                null,
+                {
+                    format: 'jpeg',
+                    quality: 50
+                },
+                function(screen) {
+                    _this.report_data.screen = screen;
+
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
+                }
+            );
         },
 
         onMessage: function () {
@@ -261,7 +289,59 @@
                         _this.changePartyCookies();
 
                         break;
+
+                    case 'getReportData':
+                        sendResponse(_this.report_data);
+
+                        break;
+
+                    case 'sendReport':
+                        _this.sendReport(mes.ext_flag, mes.screen_flag);
+
+                        break;
                 }
+            });
+        },
+
+        sendReport: function (ext_flag, screen_flag) {
+            var send_data,
+                item,
+                send_data_arr = [],
+                url_data;
+
+            url_data = _.parseURL(this.report_data.url);
+            this.reports.push(url_data.hostname);
+
+            send_data = {
+                id  : encodeURIComponent(this.report_data.id),
+                url : encodeURIComponent(this.report_data.url),
+                v   : encodeURIComponent(this.report_data.version),
+                s   : this.report_data.status,
+                b   : config.browser
+            };
+
+            if (ext_flag) {
+                send_data.ext = encodeURIComponent(JSON.stringify(this.report_data.ext));
+            }
+
+            if (screen_flag) {
+                send_data.screen = encodeURIComponent(this.report_data.screen);
+            }
+
+            for (item in send_data) {
+                if (!send_data.hasOwnProperty(item)) {
+                    continue;
+                }
+
+                send_data_arr.push(item + '=' + send_data[item]);
+            }
+
+            _.ajax({
+                url     : config.url_report,
+                type    : 'POST',
+                success : function (response) {
+                },
+                data    : send_data_arr.join('&')
             });
         },
 
@@ -366,6 +446,8 @@
             this.runCleaner();
 
             this.onMessage();
+
+            this.loadExtInfo();
 
             this.checkExtension();
             

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-	<title>Stop Reclame</title>
+    <title>Stop Reclame</title>
 
-	<meta name="description" content="Stop Reclame"/>
-	<meta name="keywords" lang="ru" content="остановим рекламу, удаление рекламы"/>
-	<meta name="keywords" lang="en" content="Stop Reclame, Delete Teaser"/>
+    <meta name="description" content="Stop Reclame"/>
+    <meta name="keywords" lang="ru" content="остановим рекламу, удаление рекламы"/>
+    <meta name="keywords" lang="en" content="Stop Reclame, Delete Teaser"/>
 
 	<link rel="stylesheet" href="../css/popup.css" />
 
@@ -16,79 +16,79 @@
 	<script type="text/javascript" src="../js/popup.js"></script>
 </head>
 <body>
-<div>
-	<div class="popup-value">
+	<div>
+		<div class="popup-value">
+			<div>
+				<strong>
+					Stop Reclame 2.5
+				</strong>
+			</div>
+		</div>
+		<div id="bn_onoff_container"  class="button-onoff">
+			<div class="onoffswitch">
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+				<label class="onoffswitch-label" for="myonoffswitch">
+					<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-switch"></span>
+				</label>
+			</div>
+		</div>
+	</div>
+	
+	<div>
 		<div>
-			<strong>
-				Stop Reclame 2.4
-			</strong>
+			<div id="total_blocked_info" class="popup-info">Всего заблокировано:</div>
+			<div class="popup-value">
+				<strong id="total_blocked">
+					0
+				</strong>
+			</div>
+		</div>
+		<div>
+			<div id="page_blocked_info" class="popup-info">Заблокировано на данной странице:</div>
+			<div class="popup-value">
+				<strong id="page_blocked">
+					0
+				</strong>
+			</div>
 		</div>
 	</div>
-	<div id="bn_onoff_container"  class="button-onoff">
-		<div class="onoffswitch">
-			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-			<label class="onoffswitch-label" for="myonoffswitch">
-				<span class="onoffswitch-inner"></span>
-				<span class="onoffswitch-switch"></span>
-			</label>
-		</div>
-	</div>
-</div>
 
-<div>
+	<div style="width:100%; text-align: center;">
+		<span id="block_party_cookies_text" class="popup-info">Заблокировать 3rd party cookies</span>
+		<input id="block_party_cookies" type="checkbox">
+	</div>
+
 	<div>
-		<div id="total_blocked_info" class="popup-info">Всего заблокировано:</div>
+		<div id="page_has_ad" class="popup-info">Есть реклама на сайте?</div>
 		<div class="popup-value">
-			<strong id="total_blocked">
-				0
-			</strong>
+			<button id="bn_error_report" type="button"></button>
 		</div>
 	</div>
-	<div>
-		<div id="page_blocked_info" class="popup-info">Заблокировано на данной странице:</div>
+	<div class="bn-control">
 		<div class="popup-value">
-			<strong id="page_blocked">
-				0
-			</strong>
+			<a id="view_extensions" href="#" target="_blank" title="">
+				<img src="../images/extension.png" style="width: 32px; height: 32px;"/>
+			</a>
+			&nbsp;
+			<a id="vk_link" href="http://vk.com/club71216430" target="_blank" title="">
+				<img src="../images/vk.png" style="width: 32px; height: 32px;"/>
+			</a>
+			&nbsp;
+			<a id="twitter_link" href="https://twitter.com/StopReclameExt" target="_blank" title="Twitter">
+				<img src="../images/twitter.png" style="width: 32px; height: 32px;"/>
+			</a>
+			&nbsp;
+			<a id="facebook_link" href="https://www.facebook.com/extstopreclame" target="_blank" title="Facebook">
+				<img src="../images/facebook.png" style="width: 32px; height: 32px;"/>
+			</a>
 		</div>
 	</div>
-</div>
 
-<div style="width:100%; text-align: center;">
-	<span id="block_party_cookies_text" class="popup-info">Заблокировать 3rd party cookies</span>
-	<input id="block_party_cookies" type="checkbox">
-</div>
-
-<div>
-	<div id="page_has_ad" class="popup-info">Есть реклама на сайте?</div>
-	<div class="popup-value">
-		<button id="bn_error_report" type="button"></button>
-	</div>
-</div>
-<div class="bn-control">
-	<div class="popup-value">
-		<a id="view_extensions" href="#" target="_blank" title="">
-			<img src="../images/extension.png" style="width: 32px; height: 32px;"/>
-		</a>
-		&nbsp;
-		<a id="vk_link" href="http://vk.com/club71216430" target="_blank" title="">
-			<img src="../images/vk.png" style="width: 32px; height: 32px;"/>
-		</a>
-		&nbsp;
-		<a id="twitter_link" href="https://twitter.com/StopReclameExt" target="_blank" title="Twitter">
-			<img src="../images/twitter.png" style="width: 32px; height: 32px;"/>
-		</a>
-		&nbsp;
-		<a id="facebook_link" href="https://www.facebook.com/extstopreclame" target="_blank" title="Facebook">
-			<img src="../images/facebook.png" style="width: 32px; height: 32px;"/>
+	<div id="dv_autor">
+		<a class="link-show" target="_blank" title="Developed by Denys Skychko" href="http://skychko.com">
+			© Skychko, 2014
 		</a>
 	</div>
-</div>
-
-<div id="dv_autor">
-	<a class="link-show" target="_blank" title="Developed by Denys Skychko" href="http://skychko.com">
-		© Skychko, 2014
-	</a>
-</div>
 </body>
 </html>

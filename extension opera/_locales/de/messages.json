@@ -73,5 +73,29 @@
 
     "block_cookies": {
         "message": "Block 3rd party cookies"
+    },
+
+    "report": {
+        "message": "Bericht"
+    },
+
+    "report_attach_screen": {
+        "message": "Befestigen Screenshot"
+    },
+
+    "report_attach_ext": {
+        "message": "Befestigen Erweiterungen"
+    },
+
+    "send": {
+        "message": "Send"
+    },
+
+    "cancel": {
+        "message": "Cancel"
+    },
+
+    "report_sended": {
+        "message": "Bericht gesendet wurde"
     }
 }
