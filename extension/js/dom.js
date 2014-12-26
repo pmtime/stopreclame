@@ -23,5 +23,9 @@ var DOM = {
         }
 
         return true;
+    },
+
+    addEvent: function (el, event, callback) {
+        el.addEventListener(event, callback, false);
     }
 };
