@@ -3,6 +3,10 @@
         "message": "Stop Reclame"
     },
 
+    "ext_description": {
+        "message": "Stop Reclame!"
+    },
+
     "total_blocked": {
         "message": "Gesamt blockert:"
     },
@@ -97,5 +101,25 @@
 
     "report_sended": {
         "message": "Bericht gesendet wurde"
+    },
+
+    "ext_onoff_text": {
+        "message": "Erweiterungen on/off"
+    },
+
+    "ext_like": {
+        "message": "I like the extension"
+    },
+
+    "find_our": {
+        "message": "Find our on"
+    },
+
+    "our_site": {
+        "message": "Our site"
+    },
+
+    "our_email": {
+        "message": "Our email"
     }
 }

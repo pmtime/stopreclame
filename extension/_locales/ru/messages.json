@@ -3,6 +3,10 @@
         "message": "Stop Reclame"
     },
 
+    "ext_description": {
+        "message": "Удаление навязчивой рекламы"
+    },
+
     "total_blocked": {
         "message": "Всего заблокировано:"
     },
@@ -97,5 +101,25 @@
 
     "report_sended": {
         "message": "Отчет отправлен"
+    },
+
+    "ext_onoff_text": {
+        "message": "Расширение вкл/откл"
+    },
+
+    "ext_like": {
+        "message": "Мне нравится расширение"
+    },
+
+    "find_our": {
+        "message": "Найти нас в"
+    },
+
+    "our_site": {
+        "message": "Наш сайт"
+    },
+
+    "our_email": {
+        "message": "Наш email"
     }
 }

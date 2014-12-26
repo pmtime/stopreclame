@@ -106,7 +106,12 @@
             dom.id("bn_error_report").innerHTML          = chrome.i18n.getMessage("create_report");
             dom.id('block_party_cookies_text').innerHTML = chrome.i18n.getMessage("block_cookies");
             dom.id("vk_link").setAttribute("title", chrome.i18n.getMessage("vk_link"));
-            dom.id("view_extensions").setAttribute("title", chrome.i18n.getMessage("view_extensions"));
+            dom.id("view_extensions").innerHTML          = chrome.i18n.getMessage("view_extensions");
+            dom.id('ext_onoff_text').innerHTML           = chrome.i18n.getMessage("ext_onoff_text");
+            dom.id('ext_like_text').innerHTML            = chrome.i18n.getMessage("ext_like");
+            dom.id('find_our_text').innerHTML            = chrome.i18n.getMessage("find_our");
+            dom.id('our_site_text').innerHTML            = chrome.i18n.getMessage("our_site");
+            dom.id('our_email_text').innerHTML           = chrome.i18n.getMessage("our_email");
         },
 
         setViewExtensionUrl: function () {

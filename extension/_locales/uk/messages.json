@@ -3,6 +3,10 @@
         "message": "Stop Reclame"
     },
 
+    "ext_description": {
+        "message": "Видалення нав'язливої реклами"
+    },
+
     "total_blocked": {
         "message": "Усього заблаковано:"
     },
@@ -97,5 +101,25 @@
 
     "report_sended": {
         "message": "Звіт відправлений"
+    },
+
+    "ext_onoff_text": {
+        "message": "Розширення вімкнути/вимкнути"
+    },
+
+    "ext_like": {
+        "message": "Мені подобається розшірення"
+    },
+
+    "find_our": {
+        "message": "Знайти нас у"
+    },
+
+    "our_site": {
+        "message": "Наш сайт"
+    },
+
+    "our_email": {
+        "message": "Наш email"
     }
 }
