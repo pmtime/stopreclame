@@ -120,29 +120,28 @@
             tabs = document.querySelectorAll('.tabs>.tab');
 
             for (i = 0; i < tabs.length; ++i) {
-                dom.addEvent(tabs[i], 'click', function (e) {
-                    var tab = e.target,
-                        tabs_content,
-                        link,
-                        i;
+                (function (tab) {
+                    dom.addEvent(tab, 'click', function (e) {
+                        var tabs_content,
+                            link,
+                            i;
 
-                    for (i = 0; i < tabs.length; ++i) {
-                        tabs[i].classList.remove('tab-active');
-                    }
+                        for (i = 0; i < tabs.length; ++i) {
+                            tabs[i].classList.remove('tab-active');
+                        }
 
-                    tabs_content = document.querySelectorAll('.content > .tab-content');
+                        tabs_content = document.querySelectorAll('.content > .tab-content');
 
-                    //console.log(tabs_content);
+                        for (i = 0; i < tabs_content.length; ++i) {
+                            tabs_content[i].classList.remove('tab-content-active');
+                        }
 
-                    for (i = 0; i < tabs_content.length; ++i) {
-                        tabs_content[i].classList.remove('tab-content-active');
-                    }
+                        tab.classList.add('tab-active');
+                        link = tab.getAttribute('data-tab');
 
-                    tab.classList.add('tab-active');
-                    link = tab.getAttribute('data-tab');
-
-                    document.querySelector('.' + link).classList.add('tab-content-active');
-                });
+                        document.querySelector('.' + link).classList.add('tab-content-active');
+                    });
+                }(tabs[i]));
             }
 
         },
