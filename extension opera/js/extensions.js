@@ -9,6 +9,7 @@ var EXTS = {
         var _this = this,
             i,
             html = '',
+            amt,
             getTr = function (data) {
                 var html = '';
 
@@ -16,13 +17,20 @@ var EXTS = {
                         '<td>' + _this.getInfoExtension(data.id, data.name) + '</td>' +
                         '<td class="f-weight">' + data.name + '</td>' +
                         '<td class="ta-center">' + data.version + '</td>' +
-                        '<td>' + data.description + '</td>' +
-                        '<td style="text-align: center;"><input data-id="' + data.id + '" type="checkbox" ' + (data.enabled ? 'checked="checked"' : "") + '/></td>' +
+                        '<td>' + data.description + '</td>';
+
+                if (data.name !== _this.ext_name) {
+                    html += '<td style="text-align: center;"><input data-id="' + data.id + '" type="checkbox" ' + (data.enabled ? 'checked="checked"' : "") + '/></td>' +
                         '<td><button data-id="' + data.id + '">' +
-                                chrome.i18n.getMessage("remove") +
-                            '</button>' +
-                        '</td>' +
-                    '</tr>';
+                        chrome.i18n.getMessage("remove") +
+                        '</button>' +
+                        '</td>';
+                } else {
+                    html += '<td></td><td></td>';
+                }
+
+
+                html += '</tr>';
 
                 return html;
             };
@@ -38,19 +46,20 @@ var EXTS = {
                 '</tr>' +
             '</thead><tbody>';
 
+        amt = 0;
+
         for (i = 0; i < this.list.length; ++i) {
             if (this.list[i].type !== "extension") {
                 continue;
             }
 
-            if (this.ext_name === this.list[i].name) {
-                continue;
-            }
-
             html += getTr(this.list[i]);
+            ++amt
         }
 
-        html += '</tbody></table>';
+        html += '</tbody>' +
+                '<tfoot><tr><th colspan="6">' + amt + '</th></tr></tfoot>' +
+            '</table>';
 
         document.getElementById("dv_data").innerHTML = html;
 

@@ -16,78 +16,151 @@
 	<script type="text/javascript" src="../js/popup.js"></script>
 </head>
 <body>
-	<div>
-		<div class="popup-value">
-			<div>
-				<strong>
-					Stop Reclame 2.5
-				</strong>
-			</div>
-		</div>
-		<div id="bn_onoff_container"  class="button-onoff">
-			<div class="onoffswitch">
-				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-				<label class="onoffswitch-label" for="myonoffswitch">
-					<span class="onoffswitch-inner"></span>
-					<span class="onoffswitch-switch"></span>
-				</label>
-			</div>
-		</div>
-	</div>
-	
-	<div>
+	<div class="popup-header">
 		<div>
-			<div id="total_blocked_info" class="popup-info">Всего заблокировано:</div>
-			<div class="popup-value">
-				<strong id="total_blocked">
-					0
-				</strong>
+			<strong>
+				Stop Reclame 2.6
+			</strong>
+		</div>
+		<div class="snowflake">
+			<img src="../images/snowflake.png">
+		</div>
+	</div>
+	<section>
+		<section class="tabs">
+			<div class="tab tab-active" data-tab="home">
+				<img src="../images/home-64.png">
 			</div>
-		</div>
-		<div>
-			<div id="page_blocked_info" class="popup-info">Заблокировано на данной странице:</div>
-			<div class="popup-value">
-				<strong id="page_blocked">
-					0
-				</strong>
+			<div class="tab" data-tab="settings">
+				<img src="../images/settings-64.png">
 			</div>
-		</div>
-	</div>
-
-	<div style="width:100%; text-align: center;">
-		<span id="block_party_cookies_text" class="popup-info">Заблокировать 3rd party cookies</span>
-		<input id="block_party_cookies" type="checkbox">
-	</div>
-
-	<div>
-		<div id="page_has_ad" class="popup-info">Есть реклама на сайте?</div>
-		<div class="popup-value">
-			<button id="bn_error_report" type="button"></button>
-		</div>
-	</div>
-	<div class="bn-control">
-		<div class="popup-value">
-			<a id="view_extensions" href="#" target="_blank" title="">
-				<img src="../images/extension.png" style="width: 32px; height: 32px;"/>
-			</a>
-			&nbsp;
-			<a id="vk_link" href="http://vk.com/club71216430" target="_blank" title="">
-				<img src="../images/vk.png" style="width: 32px; height: 32px;"/>
-			</a>
-			&nbsp;
-			<a id="twitter_link" href="https://twitter.com/StopReclameExt" target="_blank" title="Twitter">
-				<img src="../images/twitter.png" style="width: 32px; height: 32px;"/>
-			</a>
-			&nbsp;
-			<a id="facebook_link" href="https://www.facebook.com/extstopreclame" target="_blank" title="Facebook">
-				<img src="../images/facebook.png" style="width: 32px; height: 32px;"/>
-			</a>
-		</div>
-	</div>
+			<div class="tab" data-tab="like">
+				<img src="../images/heart-64.png">
+			</div>
+			<div class="tab" data-tab="contacts">
+				<img src="../images/group-64.png">
+			</div>
+		</section>
+		<section class="content">
+			<div class="tab-content tab-content-active home">
+				<div>
+					<div>
+						<div id="total_blocked_info" class="popup-info">Всего заблокировано:</div>
+						<div class="popup-value">
+							<strong id="total_blocked">
+								0
+							</strong>
+						</div>
+					</div>
+					<div>
+						<div id="page_blocked_info" class="popup-info">Заблокировано на данной странице:</div>
+						<div class="popup-value">
+							<strong id="page_blocked">
+								0
+							</strong>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div id="page_has_ad" class="popup-info">Есть реклама на сайте?</div>
+					<div class="popup-value">
+						<button id="bn_error_report" type="button"></button>
+					</div>
+				</div>
+				<br>
+				<div class="popup-error-info">
+					<a class="link-show error" id="view_bad_extensions" href="#" target="_blank" title="">
+						You have bad extensions!
+					</a>
+				</div>
+			</div>
+			<div class="tab-content settings">
+				<div id="ext_onoff_text" class="popup-info">
+					Extension on/off
+				</div>
+				<div id="bn_onoff_container"  class="button-onoff">
+					<div class="onoffswitch">
+						<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+						<label class="onoffswitch-label" for="myonoffswitch">
+							<span class="onoffswitch-inner"></span>
+							<span class="onoffswitch-switch"></span>
+						</label>
+					</div>
+				</div>
+				<br>
+				<div class="popup-info">
+					<span id="block_party_cookies_text" class="popup-info">Заблокировать 3rd party cookies</span>
+					<input id="block_party_cookies" type="checkbox">
+				</div>
+				<br>
+				<div class="popup-info">
+					<a class="link-show" id="view_extensions" href="#" target="_blank" title="">
+						Extensions
+					</a>
+				</div>
+			</div>
+			<div class="tab-content like">
+				<div id="ext_like_text" class="popup-info">
+					I like the extension
+				</div>
+				<div class="bn-control">
+					<div class="popup-info">
+						<a class="link-like" target="_blank" href="https://twitter.com/intent/tweet?text=@StopReclameExt%20%0AStop%20Reclame%20%0AGet%20rid%20of%20ads%20for%20free%20%0A&url=http%3A//stopreclame.com">
+							<img src="../images/share_twitter.png"/>
+						</a>
+						&nbsp;
+						<a class="link-like" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//stopreclame.com">
+							<img src="../images/share_facebook.png"/>
+						</a>
+						&nbsp;
+						<a class="link-like" target="_blank" href="https://plus.google.com/share?url=http%3A//stopreclame.com">
+							<img src="../images/share_googleplus.png"/>
+						</a>
+						&nbsp;
+						<a class="link-like" target="_blank" href="https://vk.com/share.php?url=http%3A//stopreclame.com&title=Stop%20Reclame&description=%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%D0%B2%D1%8F%D0%B7%D1%87%D0%B8%D0%B2%D0%BE%D0%B9%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%8B&image=http%3A//skychko.com/test/preview_vk.png&noparse=true">
+							<img src="../images/share_vk.png"/>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="tab-content contacts">
+				<div class="popup-contacts">
+					<div id="find_our_text"></div>
+					<div>
+						<a class="link-show" id="vk_link" href="http://vk.com/stopreclame" target="_blank" title="">
+							vk.com
+						</a>
+					</div>
+					<div>
+						<a class="link-show" id="twitter_link" href="https://twitter.com/StopReclameExt" target="_blank" title="Twitter">
+							twitter.com
+						</a>
+					</div>
+					<div>
+						<a class="link-show" id="facebook_link" href="https://www.facebook.com/extstopreclame" target="_blank" title="Facebook">
+							facebook.com
+						</a>
+					</div>
+					<div id="our_site_text"></div>
+					<div>
+						<a class="link-show" href="http://stopreclame.com" target="_blank" title="">
+							stopreclame.com
+						</a>
+					</div>
+					<div id="our_email_text"></div>
+					<div>
+						<a class="link-show" href="mailto:extstopreclame@gmail.com?subject=feedback" target="_blank" title="">
+							extstopreclame@gmail.com
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
 
 	<div id="dv_autor">
-		<a class="link-show" target="_blank" title="Developed by Denys Skychko" href="http://skychko.com">
-			© Skychko, 2014
+		<a target="_blank" title="Developed by Denys Skychko" href="http://skychko.com">
+			© Skychko, 2015
 		</a>
 	</div>
 </body>

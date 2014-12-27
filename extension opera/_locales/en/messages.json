@@ -3,6 +3,10 @@
         "message": "Stop Reclame"
     },
 
+    "ext_description": {
+        "message": "Get rid of ads for free!"
+    },
+
     "total_blocked": {
         "message": "Total blocked:"
     },
@@ -97,5 +101,29 @@
 
     "report_sended": {
         "message": "Report has been sent"
+    },
+
+    "ext_onoff_text": {
+        "message": "Extension on/off"
+    },
+
+    "ext_like": {
+        "message": "I like the extension"
+    },
+
+    "find_our": {
+        "message": "Find our on"
+    },
+
+    "our_site": {
+        "message": "Our site"
+    },
+
+    "our_email": {
+        "message": "Our email"
+    },
+
+    "you_have_bad_ext": {
+        "message": "You have malware extensions!"
     }
 }

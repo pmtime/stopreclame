@@ -106,15 +106,56 @@
             dom.id("bn_error_report").innerHTML          = chrome.i18n.getMessage("create_report");
             dom.id('block_party_cookies_text').innerHTML = chrome.i18n.getMessage("block_cookies");
             dom.id("vk_link").setAttribute("title", chrome.i18n.getMessage("vk_link"));
-            dom.id("view_extensions").setAttribute("title", chrome.i18n.getMessage("view_extensions"));
+            dom.id("view_extensions").innerHTML          = chrome.i18n.getMessage("view_extensions");
+            dom.id('ext_onoff_text').innerHTML           = chrome.i18n.getMessage("ext_onoff_text");
+            dom.id('ext_like_text').innerHTML            = chrome.i18n.getMessage("ext_like");
+            dom.id('find_our_text').innerHTML            = chrome.i18n.getMessage("find_our");
+            dom.id('our_site_text').innerHTML            = chrome.i18n.getMessage("our_site");
+            dom.id('our_email_text').innerHTML           = chrome.i18n.getMessage("our_email");
+            dom.id('view_bad_extensions').innerHTML      = chrome.i18n.getMessage("you_have_bad_ext");
         },
 
         setViewExtensionUrl: function () {
             dom.id("view_extensions").setAttribute("href", chrome.runtime.getURL("html/extensions.html"));
         },
 
+        initTabs: function () {
+            var tabs,
+                i;
+
+            tabs = document.querySelectorAll('.tabs>.tab');
+
+            for (i = 0; i < tabs.length; ++i) {
+                (function (tab) {
+                    dom.addEvent(tab, 'click', function (e) {
+                        var tabs_content,
+                            link,
+                            i;
+
+                        for (i = 0; i < tabs.length; ++i) {
+                            tabs[i].classList.remove('tab-active');
+                        }
+
+                        tabs_content = document.querySelectorAll('.content > .tab-content');
+
+                        for (i = 0; i < tabs_content.length; ++i) {
+                            tabs_content[i].classList.remove('tab-content-active');
+                        }
+
+                        tab.classList.add('tab-active');
+                        link = tab.getAttribute('data-tab');
+
+                        document.querySelector('.' + link).classList.add('tab-content-active');
+                    });
+                }(tabs[i]));
+            }
+
+        },
+
         run: function () {
             var _this = this;
+
+            this.initTabs();
 
             this.setI18n();
             this.setViewExtensionUrl();
@@ -155,8 +196,10 @@
 
                 _this.addBind();
 
+                dom.id("view_bad_extensions").setAttribute("href", chrome.runtime.getURL("html/extensions.html"));
+
                 if (_this.has_bad_ext) {
-                    dom.id("view_extensions").getElementsByTagName("img")[0].setAttribute("src", "../images/extension_bad.png")
+                    dom.id('view_bad_extensions').style.display = "block";
                 }
             });
         }

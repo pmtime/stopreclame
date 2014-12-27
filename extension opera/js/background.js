@@ -27,11 +27,18 @@
 
         offExt: function () {
             config.ext_status = "0";
+
+            chrome.browserAction.setIcon({path: {19:"/images/off_ext-19.png", 38:"/images/off_ext-38.png"}});
+
+
             config.saveConfig();
         },
 
         onExt: function () {
             config.ext_status = "1";
+
+            chrome.browserAction.setIcon({path: {19:"/images/icon-19.png", 38:"/images/icon-38.png"}});
+
             config.saveConfig();
         },
 
@@ -434,6 +441,14 @@
             });
         },
 
+        checkExtStatus: function () {
+            if (config.ext_status === '0') {
+                chrome.browserAction.setIcon({path: {19:"/images/off_ext-19.png", 38:"/images/off_ext-38.png"}});
+            } else {
+                chrome.browserAction.setIcon({path: {19:"/images/icon-19.png", 38:"/images/icon-38.png"}});
+            }
+        },
+
         run: function () {
             var _this = this;
 
@@ -449,8 +464,10 @@
 
             this.loadExtInfo();
 
+            this.checkExtStatus();
+
             this.checkExtension();
-            
+
             window.setTimeout(function () {
                 _this.runUpdater();
             }, 3 * 1000);
