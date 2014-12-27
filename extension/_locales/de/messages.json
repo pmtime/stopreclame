@@ -121,5 +121,9 @@
 
     "our_email": {
         "message": "Our email"
+    },
+
+    "you_have_bad_ext": {
+        "message": "You have malware extensions!"
     }
 }

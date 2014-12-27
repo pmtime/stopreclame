@@ -47,7 +47,7 @@ var EXTS = {
             '</thead><tbody>';
 
         amt = 0;
-        
+
         for (i = 0; i < this.list.length; ++i) {
             if (this.list[i].type !== "extension") {
                 continue;

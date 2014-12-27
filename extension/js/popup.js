@@ -112,6 +112,7 @@
             dom.id('find_our_text').innerHTML            = chrome.i18n.getMessage("find_our");
             dom.id('our_site_text').innerHTML            = chrome.i18n.getMessage("our_site");
             dom.id('our_email_text').innerHTML           = chrome.i18n.getMessage("our_email");
+            dom.id('view_bad_extensions').innerHTML      = chrome.i18n.getMessage("you_have_bad_ext");
         },
 
         setViewExtensionUrl: function () {
@@ -195,8 +196,10 @@
 
                 _this.addBind();
 
+                dom.id("view_bad_extensions").setAttribute("href", chrome.runtime.getURL("html/extensions.html"));
+
                 if (_this.has_bad_ext) {
-                    dom.id("view_extensions").getElementsByTagName("img")[0].setAttribute("src", "../images/extension_bad.png")
+                    dom.id('view_bad_extensions').style.display = "block";
                 }
             });
         }

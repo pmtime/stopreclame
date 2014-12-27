@@ -121,5 +121,9 @@
 
     "our_email": {
         "message": "Наш email"
+    },
+
+    "you_have_bad_ext": {
+        "message": "Встановлені розшірення вставляють рекламу!"
     }
 }
