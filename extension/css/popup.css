@@ -289,3 +289,14 @@ STRONG {
 #view_bad_extensions {
     display: none;
 }
+
+.snowflake {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+}
+
+.snowflake > IMG {
+    width: 24px;
+    height: 24px;
+}
