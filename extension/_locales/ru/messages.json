@@ -12,7 +12,7 @@
     },
 
     "page_blocked": {
-        "message": "Заблокировано на данной странице:"
+        "message": "Заблокировано на сайте:"
     },
 
     "page_has_ad": {
@@ -76,7 +76,7 @@
     },
 
     "block_cookies": {
-        "message": "Заблокировать 3rd party cookies"
+        "message": "Блок 3rd party cookies"
     },
 
     "report": {

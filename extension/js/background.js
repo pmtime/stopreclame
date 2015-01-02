@@ -265,6 +265,7 @@
                         break;
 
                     case "getPopupData":
+                        _this.checkExtension();
                         sendResponse(_this.getDataForPopup(mes.tabId, mes.url));
                         break;
 

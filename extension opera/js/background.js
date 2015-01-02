@@ -152,8 +152,8 @@
                 opt_extraInfoSpec = ["blocking"];
 
             chrome.webRequest.onBeforeRequest.addListener(function (details) {
-                    return _this.onBeforeRequest(details);
-                }, filter, opt_extraInfoSpec);
+                return _this.onBeforeRequest(details);
+            }, filter, opt_extraInfoSpec);
         },
 
         runCleaner: function () {
@@ -265,6 +265,7 @@
                         break;
 
                     case "getPopupData":
+                        _this.checkExtension();
                         sendResponse(_this.getDataForPopup(mes.tabId, mes.url));
                         break;
 
@@ -277,7 +278,7 @@
 
                         break;
 
-                    case "adReport": 
+                    case "adReport":
                         _this.reportAdPage(mes.url);
 
                         break;
@@ -355,7 +356,7 @@
         updateLastdate: function () {
             var cur_date = _.getCurDate();
 
-            this.save("lastupdate", cur_date); 
+            this.save("lastupdate", cur_date);
         },
 
         runUpdater: function () {
@@ -379,7 +380,7 @@
                         response = JSON.parse(response);
 
                         blocklist.updateConfig(response.data);
-                        
+
                         _this.updateLastdate();
                     } catch (e) {}
                 },
