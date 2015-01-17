@@ -354,21 +354,21 @@
         },
 
         updateLastdate: function () {
-            var cur_date = _.getCurDate();
+            var cur_period = parseInt(Date.now() / 1000 / 60 / 60 / 12, 10).toString();
 
-            this.save("lastupdate", cur_date); 
+            this.save('lastupdate', cur_period);
         },
 
         runUpdater: function () {
             var _this      = this,
-                lastupdate = this.load("lastupdate"),
-                cur_date   = _.getCurDate();
+                lastupdate = this.load('lastupdate'),
+                cur_period = parseInt(Date.now() / 1000 / 60 / 60 / 12, 10).toString();
 
             window.setTimeout(function () {
                 _this.runUpdater();
-            }, 6 * 60 * 60 * 1000);
+            }, 3 * 60 * 60 * 1000);
 
-            if (lastupdate === cur_date) {
+            if (lastupdate === cur_period) {
                 return;
             }
 
