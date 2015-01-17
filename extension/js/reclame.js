@@ -23,14 +23,14 @@ var RECLAME = {};
 
             if (!document.getElementById(site_el_id)) {
                 style = document.createElement('style');
-                style.innerHTML = '#left_ads > *:not(iframe) {' +
-                'opacity: 0 !important; ' +
-                'position: fixed !important; ' +
-                'width: 6px !important;' +
-                'height: 6px !important;' +
-                'top: -1000px !important; ' +
-                'left: -1000px !important; ' +
-                '} ';
+                style.innerHTML = '#left_ads > *:not(iframe), .ads_ads_news_wrap {' +
+                        'opacity: 0 !important; ' +
+                        'position: fixed !important; ' +
+                        'width: 6px !important;' +
+                        'height: 6px !important;' +
+                        'top: -1000px !important; ' +
+                        'left: -1000px !important; ' +
+                    '} ';
 
                 style.setAttribute('id', site_el_id);
 
