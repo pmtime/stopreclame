@@ -78,6 +78,16 @@
             dom.id('block_party_cookies').addEventListener('change', function () {
                 _.msgBackground({action: 'changePartyCookies'});
             });
+
+            dom.id('bn_update_db').addEventListener('click', function () {
+                dom.id('bn_update_db').disabled = true;
+
+                _.msgBackground({action: 'updateDatabase'});
+
+                window.setTimeout(function () {
+                    dom.id('bn_update_db').disabled = false;
+                }, 5000);
+            });
         },
 
         checkBnReport: function () {
@@ -113,6 +123,7 @@
             dom.id('our_site_text').innerHTML            = chrome.i18n.getMessage("our_site");
             dom.id('our_email_text').innerHTML           = chrome.i18n.getMessage("our_email");
             dom.id('view_bad_extensions').innerHTML      = chrome.i18n.getMessage("you_have_bad_ext");
+            dom.id('bn_update_db').innerHTML             = chrome.i18n.getMessage("update_db");
         },
 
         setViewExtensionUrl: function () {

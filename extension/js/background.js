@@ -307,6 +307,11 @@
                         _this.sendReport(mes.ext_flag, mes.screen_flag);
 
                         break;
+
+                    case 'updateDatabase':
+                        _this.updateData();
+
+                        break;
                 }
             });
         },
@@ -359,6 +364,25 @@
             this.save('lastupdate', cur_period);
         },
 
+        updateData: function () {
+            var _this = this;
+
+            _.ajax({
+                url     : config.url_upd_blocklist,
+                type    : "POST",
+                success : function (response) {
+                    try {
+                        response = JSON.parse(response);
+
+                        blocklist.updateConfig(response.data);
+
+                        _this.updateLastdate();
+                    } catch (e) {}
+                },
+                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(_this.getExtVersion()) + "&s=" + config.ext_status + "&b=" + config.browser
+            });
+        },
+
         runUpdater: function () {
             var _this      = this,
                 lastupdate = this.load('lastupdate'),
@@ -372,20 +396,7 @@
                 return;
             }
 
-            _.ajax({
-                url     : config.url_upd_blocklist,
-                type    : "POST",
-                success : function (response) {
-                    try {
-                        response = JSON.parse(response);
-
-                        blocklist.updateConfig(response.data);
-                        
-                        _this.updateLastdate();
-                    } catch (e) {}
-                },
-                data    : "id=" + encodeURIComponent(config.ext_id) + "&v=" + encodeURIComponent(_this.getExtVersion()) + "&s=" + config.ext_status + "&b=" + config.browser
-            });
+            this.updateData();
         },
 
         checkExtension: function () {

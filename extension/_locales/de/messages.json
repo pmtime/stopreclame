@@ -125,5 +125,9 @@
 
     "you_have_bad_ext": {
         "message": "You have malware extensions!"
+    },
+
+    "update_db": {
+        "message": "Update database"
     }
 }
