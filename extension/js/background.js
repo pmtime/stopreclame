@@ -5,17 +5,18 @@
         BACKGROUND;
 
     BACKGROUND = {
-        blocklist     : BLOCKLIST,
-        ext_id        : null,
-        hash          : "background_",
-        has_bad_ext   : false,
-        party_cookies : false,
-        report_data   : {},
+        blocklist         : BLOCKLIST,
+        ext_id            : null,
+        hash              : "background_",
+        has_bad_ext       : false,
+        party_cookies     : false,
+        cur_party_cookies : false,
+        report_data       : {},
 
-        tabs        : {},
+        tabs              : {},
 
-        reports     : [],
-        img_opacity : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC",
+        reports           : [],
+        img_opacity       : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAAtJREFUCB1jYAACAAAFAAGNu5vzAAAAAElFTkSuQmCC",
 
         load: function (key) {
             return _.load(this.hash + key);
@@ -442,14 +443,94 @@
 
             chrome.privacy.websites.thirdPartyCookiesAllowed.set({'value': !this.party_cookies, 'scope': 'regular'}, function () {
                 _this.party_cookies = !_this.party_cookies;
+                _this.cur_party_cookies = _this.party_cookies;
+                _this.save('cookies_status', _this.party_cookies);
             });
         },
 
         updInfoPartyCookies: function () {
-            var _this = this;
+            var _this = this,
+                cookies_status;
 
-            chrome.privacy.websites.thirdPartyCookiesAllowed.get({}, function (data) {
-                _this.party_cookies = data.value;
+            cookies_status = this.load('cookies_status');
+
+            if (cookies_status === null) {
+                chrome.privacy.websites.thirdPartyCookiesAllowed.get({}, function (data) {
+                    _this.party_cookies = data.value;
+                    _this.cur_party_cookies = data.value;
+                    _this.save('cookies_status', data.value);
+                });
+            } else {
+                _this.party_cookies = cookies_status;
+                _this.cur_party_cookies = cookies_status;
+
+                chrome.privacy.websites.thirdPartyCookiesAllowed.set({
+                    'value': cookies_status,
+                    'scope': 'regular'
+                }, function () {
+                });
+            }
+        },
+
+        controlPartyCookies: function () {
+            var _this = this,
+                checkCookies;
+
+            checkCookies = function () {
+                if (_this.party_cookies) {
+                    if (_this.cur_party_cookies) {
+                        return;
+                    } else {
+                        chrome.privacy.websites.thirdPartyCookiesAllowed.set({
+                            'value': true,
+                            'scope': 'regular'
+                        }, function () {
+                            _this.cur_party_cookies = true;
+                        });
+
+                        return;
+                    }
+                }
+
+                chrome.tabs.query({}, function (tabs) {
+                    var i,
+                        open_youtube = false;
+
+                    for (i = 0; i < tabs.length; ++i) {
+                        if (tabs[i].url.indexOf('youtube.com') !== -1) {
+                            open_youtube = true;
+                            break;
+                        }
+                    }
+
+                    if (open_youtube) {
+                        if (!_this.cur_party_cookies) {
+                            chrome.privacy.websites.thirdPartyCookiesAllowed.set({
+                                'value': true,
+                                'scope': 'regular'
+                            }, function () {
+                                _this.cur_party_cookies = true;
+                            });
+                        }
+                    } else {
+                        if (_this.cur_party_cookies) {
+                            chrome.privacy.websites.thirdPartyCookiesAllowed.set({
+                                'value': false,
+                                'scope': 'regular'
+                            }, function () {
+                                _this.cur_party_cookies = false;
+                            });
+                        }
+                    }
+                });
+            };
+
+            chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
+                checkCookies();
+            });
+
+            chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+                checkCookies();
             });
         },
 
@@ -479,6 +560,8 @@
             this.checkExtStatus();
 
             this.checkExtension();
+
+            this.controlPartyCookies();
 
             window.setTimeout(function () {
                 _this.runUpdater();
