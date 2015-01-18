@@ -50,18 +50,32 @@ var RECLAME = {};
             return window.location.hostname.indexOf('mail.ru') !== -1;
         },
         fixReclame: function() {
-            var style;
+            var style,
+                sels;
+
+            sels = [
+                '.w-text-banner_outer',
+                '.rb_banner',
+                '.image_banner',
+                '.banner_left',
+                '.portal-banner',
+                '.p-branding-top__box',
+                '.p-top-banner',
+                '.shadow_narrow',
+                '.mm_right_block_media'
+            ];
 
             if (!document.getElementById(site_el_id)) {
                 style = document.createElement('style');
-                style.innerHTML = '.w-text-banner_outer, .rb_banner, .image_banner, .banner_left, .portal-banner {' +
-                'opacity: 0 !important; ' +
-                'position: fixed !important; ' +
-                'width: 6px !important;' +
-                'height: 6px !important;' +
-                'top: -1000px !important; ' +
-                'left: -1000px !important; ' +
-                '} ';
+                style.innerHTML = sels.join(', ') +
+                    '{' +
+                        'opacity: 0 !important; ' +
+                        'position: fixed !important; ' +
+                        'width: 6px !important;' +
+                        'height: 6px !important;' +
+                        'top: -1000px !important; ' +
+                        'left: -1000px !important; ' +
+                    '} ';
 
                 style.setAttribute('id', site_el_id);
 
