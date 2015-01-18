@@ -86,6 +86,41 @@ var RECLAME = {};
         }
     };
 
+    RECLAME.sites['yandex'] = {
+        is: function () {
+            var re = /(ya|yandex)\.(ru|ua)/gi;
+
+            return re.test(window.location.hostname);
+        },
+        fixReclame: function() {
+            var style,
+                sels;
+
+            sels = [
+                '.serp-adv'
+            ];
+
+            if (!document.getElementById(site_el_id)) {
+                style = document.createElement('style');
+                style.innerHTML = sels.join(', ') +
+                    '{' +
+                        'opacity: 0 !important; ' +
+                        'position: fixed !important; ' +
+                        'width: 6px !important;' +
+                        'height: 6px !important;' +
+                        'top: -1000px !important; ' +
+                        'left: -1000px !important; ' +
+                    '} ';
+
+                style.setAttribute('id', site_el_id);
+
+                if (!!document.head) {
+                    document.head.appendChild(style);
+                }
+            }
+        }
+    };
+
     RECLAME.sites['google'] = {
         is: function () {
             return window.location.hostname.indexOf('google') !== -1;
