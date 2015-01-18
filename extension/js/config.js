@@ -1,7 +1,30 @@
 var CONFIG = (function () {
     var _ = LIBRARY,
         module,
-        domain = "http://stopreclame.com/api";
+        domain = "http://stopreclame.com/api",
+        getBrowser;
+
+    getBrowser = function () {
+        var app;
+
+        if (typeof navigator !== 'undefined' && !!navigator.appVersion) {
+            app = navigator.appVersion.toLowerCase();
+
+            if (app.indexOf('amigo') !== -1) {
+                return 'amigo';
+            }
+
+            if (app.indexOf('yabrowser') !== -1) {
+                return 'yabrowser';
+            }
+
+            if (app.indexOf('opr') !== -1) {
+                return 'opera';
+            }
+        }
+
+        return 'chrome';
+    };
 
     module = {
         saving_params: [
@@ -16,7 +39,7 @@ var CONFIG = (function () {
         url_report        : domain + "/report.php",
         ext_id            : "0",
         hash              : "config_",
-        browser           : "chrome",
+        browser           : getBrowser(),
 
         load: function (key) {
             return _.load(this.hash + key);
