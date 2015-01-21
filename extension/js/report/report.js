@@ -18,9 +18,9 @@
             var html = '',
                 i;
 
-            html += '<table>' +
+            html += '<table class="table">' +
                 '<thead>' +
-                    '<tr>' +
+                    '<tr class="bg-primary">' +
                         '<th>ID</th>' +
                         '<th>' + chrome.i18n.getMessage('extension') + '</th>' +
                     '</tr>' +
@@ -36,7 +36,9 @@
 
             html += '</tbody>' +
                     '<tfoot>' +
-                        '<tr><th colspan="2">' + ext.length + '</th></tr>' +
+                        '<tr class="bg-primary">' +
+                            '<th colspan="2">' + ext.length + '</th>' +
+                        '</tr>' +
                     '</tfoot>' +
                 '</table>';
 

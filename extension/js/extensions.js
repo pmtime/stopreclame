@@ -20,10 +20,13 @@ var EXTS = {
                         '<td>' + data.description + '</td>';
 
                 if (data.name !== _this.ext_name) {
-                    html += '<td style="text-align: center;"><input data-id="' + data.id + '" type="checkbox" ' + (data.enabled ? 'checked="checked"' : "") + '/></td>' +
-                        '<td><button data-id="' + data.id + '">' +
-                        chrome.i18n.getMessage("remove") +
-                        '</button>' +
+                    html += '<td style="text-align: center;">' +
+                            '<input data-id="' + data.id + '" type="checkbox" ' + (data.enabled ? 'checked="checked"' : "") + '/>' +
+                        '</td>' +
+                        '<td>' +
+                            '<button class="btn btn-warning btn-sm" data-id="' + data.id + '">' +
+                                chrome.i18n.getMessage("remove") +
+                            '</button>' +
                         '</td>';
                 } else {
                     html += '<td></td><td></td>';
@@ -35,8 +38,8 @@ var EXTS = {
                 return html;
             };
 
-        html += '<table><thead>' +
-                '<tr>' +
+        html += '<table class="table table-bordered table-hover"><thead>' +
+                '<tr class="bg-primary">' +
                     '<th style="width: 50px;"></th>' +
                     '<th>' + chrome.i18n.getMessage("extension") + '</th>' +
                     '<th style="width: 150px;">' + chrome.i18n.getMessage("version") + '</th>' +
@@ -58,7 +61,7 @@ var EXTS = {
         }
 
         html += '</tbody>' +
-                '<tfoot><tr><th colspan="6">' + amt + '</th></tr></tfoot>' +
+                '<tfoot><tr class="bg-primary"><th colspan="6">Total: ' + amt + '</th></tr></tfoot>' +
             '</table>';
 
         document.getElementById("dv_data").innerHTML = html;

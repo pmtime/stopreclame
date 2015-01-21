@@ -42,7 +42,7 @@ BUTTON {
     border: 1px solid #777777;
     border-radius: 3px;
     font-size: 10pt;
-    padding: 5px 10px 5px 10px; 
+    padding: 5px 10px 5px 10px;
 }
 
 BUTTON:hover {
