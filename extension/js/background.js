@@ -472,6 +472,7 @@
             }
         },
 
+        //fix comments for youtube
         controlPartyCookies: function () {
             var _this = this,
                 checkCookies;
@@ -561,7 +562,8 @@
 
             this.checkExtension();
 
-            this.controlPartyCookies();
+            //disable auto change cookies
+            //this.controlPartyCookies();
 
             window.setTimeout(function () {
                 _this.runUpdater();
