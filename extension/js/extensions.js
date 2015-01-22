@@ -13,7 +13,7 @@ var EXTS = {
             getTr = function (data) {
                 var html = '';
 
-                html += '<tr data-id="' + data.id + '">' +
+                html += '<tr data-id="' + data.id + '" style="background-color: #ffffff;">' +
                         '<td>' + _this.getInfoExtension(data.id, data.name) + '</td>' +
                         '<td class="f-weight">' + data.name + '</td>' +
                         '<td class="ta-center">' + data.version + '</td>' +
@@ -38,7 +38,7 @@ var EXTS = {
                 return html;
             };
 
-        html += '<table class="table table-bordered table-hover"><thead>' +
+        html += '<table class="table table-bordered"><thead>' +
                 '<tr class="bg-primary">' +
                     '<th style="width: 50px;"></th>' +
                     '<th>' + chrome.i18n.getMessage("extension") + '</th>' +

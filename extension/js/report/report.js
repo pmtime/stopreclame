@@ -28,7 +28,7 @@
 
             for (i = 0; i < ext.length; ++i) {
                 html += '' +
-                    '<tr>' +
+                    '<tr style="background-color: #ffffff;">' +
                         '<td class="alignleft">' + ext[i].id + '</td>' +
                         '<td class="alignleft">' + ext[i].name + '</td>' +
                     '</tr>';
