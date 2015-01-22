@@ -1,0 +1,133 @@
+{
+  "ext_name": {
+    "message": "Stop Reclame"
+  },
+
+  "ext_description": {
+    "message": "Get rid of ads for free!"
+  },
+
+  "total_blocked": {
+    "message": "Total blocked:"
+  },
+
+  "page_blocked": {
+    "message": "On current page blocked:"
+  },
+
+  "page_has_ad": {
+    "message": "Does the page have an ad?"
+  },
+
+  "was_report": {
+    "message": "Report sended"
+  },
+
+  "create_report": {
+    "message": "Report"
+  },
+
+  "vk_link": {
+    "message": "vk.com group"
+  },
+
+  "popup_description": {
+    "message": "ad was removed"
+  },
+
+  "view_extensions": {
+    "message": "View extensions"
+  },
+
+  "extension": {
+    "message": "Extension"
+  },
+
+  "version": {
+    "message": "Version"
+  },
+
+  "description": {
+    "message": "Description"
+  },
+
+  "on": {
+    "message": "On"
+  },
+
+  "on_full": {
+    "message": "On"
+  },
+
+  "remove": {
+    "message": "Remove"
+  },
+
+  "title_ext_inject_ad": {
+    "message": "Extension injects ad!"
+  },
+
+  "title_ext_can_to_inject": {
+    "message": "Extension can to inject ad!"
+  },
+
+  "title_ext_does_not_inject": {
+    "message": "Extension doesn't inject ad."
+  },
+
+  "block_cookies": {
+    "message": "Block 3rd party cookies"
+  },
+
+  "report": {
+    "message": "Report"
+  },
+
+  "report_attach_screen": {
+    "message": "Attach screenshot"
+  },
+
+  "report_attach_ext": {
+    "message": "Attach extensions list"
+  },
+
+  "send": {
+    "message": "Send"
+  },
+
+  "cancel": {
+    "message": "Cancel"
+  },
+
+  "report_sended": {
+    "message": "Report has been sent"
+  },
+
+  "ext_onoff_text": {
+    "message": "Extension on/off"
+  },
+
+  "ext_like": {
+    "message": "I like the extension"
+  },
+
+  "find_our": {
+    "message": "Find our on"
+  },
+
+  "our_site": {
+    "message": "Our site"
+  },
+
+  "our_email": {
+    "message": "Our email"
+  },
+
+  "you_have_bad_ext": {
+    "message": "You have malware extensions!"
+  },
+
+  "update_db": {
+    "message": "Update database"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "ext_name": {
+    "message": "Stop Reclame"
+  },
+
+  "ext_description": {
+    "message": "Bloqueia anúncios por todo o lado na Web!"
+  },
+
+  "total_blocked": {
+    "message": "Ao todo:"
+  },
+
+  "page_blocked": {
+    "message": "Nesta página:"
+  },
+
+  "page_has_ad": {
+    "message": "Denunciar um anúncio página"
+  },
+
+  "was_report": {
+    "message": "Report sended"
+  },
+
+  "create_report": {
+    "message": "Relatório"
+  },
+
+  "vk_link": {
+    "message": "vk.com group"
+  },
+
+  "popup_description": {
+    "message": "Nesta página"
+  },
+
+  "view_extensions": {
+    "message": "Extensões"
+  },
+
+  "extension": {
+    "message": "Extensão"
+  },
+
+  "version": {
+    "message": "Versão"
+  },
+
+  "description": {
+    "message": "Descrição"
+  },
+
+  "on": {
+    "message": "On"
+  },
+
+  "on_full": {
+    "message": "On"
+  },
+
+  "remove": {
+    "message": "Remover"
+  },
+
+  "title_ext_inject_ad": {
+    "message": "Extensão injeta anúncio!"
+  },
+
+  "title_ext_can_to_inject": {
+    "message": "Extensão pode injetar anúncio!"
+  },
+
+  "title_ext_does_not_inject": {
+    "message": "A extensão não injetar anúncio."
+  },
+
+  "block_cookies": {
+    "message": "Bloco 3rd party cookies"
+  },
+
+  "report": {
+    "message": "Relatório"
+  },
+
+  "report_attach_screen": {
+    "message": "Anexar screenshot"
+  },
+
+  "report_attach_ext": {
+    "message": "Anexar extensões"
+  },
+
+  "send": {
+    "message": "Enviar"
+  },
+
+  "cancel": {
+    "message": "Cancelar"
+  },
+
+  "report_sended": {
+    "message": "Relatório foi enviado"
+  },
+
+  "ext_onoff_text": {
+    "message": "Parar Stop Reclame"
+  },
+
+  "ext_like": {
+    "message": "Eu gosto"
+  },
+
+  "find_our": {
+    "message": "Encontrar o nosso"
+  },
+
+  "our_site": {
+    "message": "Nosso site"
+  },
+
+  "our_email": {
+    "message": "Nosso email"
+  },
+
+  "you_have_bad_ext": {
+    "message": "Você tem extensões de malware!"
+  },
+
+  "update_db": {
+    "message": "Atualizar dados"
+  }
+}
